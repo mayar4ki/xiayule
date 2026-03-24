@@ -2,15 +2,52 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+/* Figma palettes — redefine @theme default oklch grays so bg-gray-*, text-stone-*, etc. use these */
+@theme {
+  --color-brand-50: #ebf0ff;
+  --color-brand-100: #d7e1ff;
+  --color-brand-200: #aec2ff;
+  --color-brand-300: #86a4ff;
+  --color-brand-400: #5d85ff;
+  --color-brand-500: #3567ff;
+  --color-brand-600: #2a53ce;
+  --color-brand-700: #203f9e;
+  --color-brand-800: #152b6d;
+  --color-brand-900: #12204c;
+  --color-brand-950: #0a1428;
+
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #101010;
+  --color-gray-950: #050505;
+
+  --color-stone-50: #fcfcfd;
+  --color-stone-100: #f3f4f6;
+  --color-stone-200: #e8e8e8;
+  --color-stone-300: #d6d6d6;
+  --color-stone-400: #a5a5a5;
+  --color-stone-500: #757575;
+  --color-stone-600: #575757;
+  --color-stone-700: #404040;
+  --color-stone-800: #2e2e2e;
+  --color-stone-900: #1f1f1f;
+  --color-stone-950: #121212;
+}
 
 /* =============================================================================
- * FIGMA SEMANTIC TOKENS (mode-aware)
- * Names match spec: bg.default → --bg-default, brand.bg.emphasis → --brand-bg-emphasis
- * Light: gray-* / blue-* (= brand) / green / orange / red. Dark: black + stone-* + same accents.
- * Values use var(--color-*) from @theme below (same hex as design primitives).
+ * tokens / colors / aliases
  * ============================================================================= */
 :root {
+
+  --radius: 0.5rem;
+
   /* bg.* */
   --bg-emphasis: var(--color-gray-200);
   --bg-default: #ffffff;
@@ -45,42 +82,6 @@
   --brand-bg-emphasis: var(--color-brand-900);
   --brand-bg-default: var(--color-brand-500);
   --brand-bg-subtle: var(--color-brand-100);
-
-  --container-7xl: 70rem;
-
-  /* Dashboard: Pipeline Summary card (Figma 0:2185) */
-  --dashboard-pipeline-border: #e1e4ed;
-  --dashboard-pipeline-radius: 14px;
-  --dashboard-pipeline-title-color: #091026;
-  --dashboard-pipeline-title-size: 1rem;
-  --dashboard-pipeline-title-leading: 1.3rem;
-  --dashboard-pipeline-caption-color: #6e7991;
-  --dashboard-pipeline-caption-size: 0.75rem;
-  --dashboard-pipeline-caption-leading: 1.125rem;
-  --dashboard-pipeline-link-color: var(--color-brand-500);
-  --dashboard-pipeline-link-size: 0.75rem;
-  --dashboard-pipeline-link-leading: 1.125rem;
-  --dashboard-pipeline-stage-color: #3d4a65;
-  --dashboard-pipeline-stage-size: 0.75rem;
-  --dashboard-pipeline-stage-leading: 1.125rem;
-  --dashboard-pipeline-row-gap: 1rem;
-  --dashboard-pipeline-bar-height: 30px;
-  --dashboard-pipeline-bar-radius: 8px;
-  --dashboard-pipeline-track-bg: #f1f3f7;
-  --dashboard-pipeline-bar-fill: #314174;
-  --dashboard-pipeline-chip-height: 24px;
-  --dashboard-pipeline-chip-radius: 6px;
-  --dashboard-pipeline-chip-count-size: 0.75rem;
-  --dashboard-pipeline-chip-value-size: 0.6875rem;
-  --dashboard-pipeline-label-width: 88px;
-  --dashboard-pipeline-chip-overlay-on-dark: rgb(255 255 255 / 0.15);
-  --dashboard-pipeline-chip-overlay-on-light: rgb(255 255 255 / 0.6);
-  --dashboard-pipeline-chip-count-on-dark: #ffffff;
-  --dashboard-pipeline-chip-value-on-dark: rgb(255 255 255 / 0.7);
-  --dashboard-pipeline-chip-count-on-light: var(--color-gray-800);
-  --dashboard-pipeline-chip-value-on-light: var(--color-gray-600);
-  --dashboard-pipeline-light-bar-start: rgb(209 250 229 / 0.9);
-  --dashboard-pipeline-light-bar-end: rgb(224 242 254 / 0.8);
 }
 
 .dark {
@@ -108,7 +109,7 @@
   --content-subtle: var(--color-stone-400);
   --content-muted: var(--color-stone-600);
   --content-inverted: #1a1a1a;
-  
+
   --content-info: var(--color-blue-100);
   --content-success: var(--color-green-100);
   --content-attention: var(--color-orange-100);
@@ -118,19 +119,6 @@
   --brand-bg-emphasis: var(--color-brand-100);
   --brand-bg-default: var(--color-brand-500);
   --brand-bg-subtle: var(--color-brand-900);
-
-  --dashboard-pipeline-border: var(--color-stone-600);
-  --dashboard-pipeline-title-color: var(--color-stone-50);
-  --dashboard-pipeline-caption-color: var(--color-stone-400);
-  --dashboard-pipeline-link-color: var(--color-brand-400);
-  --dashboard-pipeline-stage-color: var(--color-stone-300);
-  --dashboard-pipeline-track-bg: var(--color-stone-900);
-  --dashboard-pipeline-bar-fill: var(--color-brand-700);
-  --dashboard-pipeline-chip-overlay-on-light: rgb(30 41 59 / 0.4);
-  --dashboard-pipeline-chip-count-on-light: var(--color-stone-200);
-  --dashboard-pipeline-chip-value-on-light: var(--color-stone-400);
-  --dashboard-pipeline-light-bar-start: rgb(16 185 129 / 0.35);
-  --dashboard-pipeline-light-bar-end: rgb(14 165 233 / 0.28);
 }
 
 /* -----------------------------------------------------------------------------
@@ -138,29 +126,29 @@
  * delete this whole block and wire @theme to --bg-default / --content-* / …)
  * ----------------------------------------------------------------------------- */
 
-@theme inline {
-  --color-background: var(--bg-default); /* new */
+ @custom-variant dark (&:is(.dark *));
 
-  --color-foreground: var(--foreground);
+ @theme inline {
+
   --font-sans: var(--font-inter);
   --font-mono: var(--font-mono-fallback, ui-monospace, monospace);
   --font-heading: var(--font-figtree);
 
+  --color-background: var(--bg-default);
+  --color-foreground: var(--foreground);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--color-brand-700); /* new */
+  --color-sidebar-accent-foreground: var(--color-brand-700);
   --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--bg-default); /* new */
-
+  --color-sidebar: var(--bg-default);
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
-
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -178,184 +166,84 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-xl: calc(var(--radius) + 4px);
 
-  --color-brand-50: #ebf0ff;
-  --color-brand-100: #d7e1ff;
-  --color-brand-200: #aec2ff;
-  --color-brand-300: #86a4ff;
-  --color-brand-400: #5d85ff;
-  --color-brand-500: #3567ff;
-  --color-brand-600: #2a53ce;
-  --color-brand-700: #203f9e;
-  --color-brand-800: #152b6d;
-  --color-brand-900: #12204c;
-
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #101010;
-
-  --color-stone-50: #fcfcfd;
-  --color-stone-100: #f3f4f6;
-  --color-stone-200: #e8e8e8;
-  --color-stone-300: #d6d6d6;
-  --color-stone-400: #a5a5a5;
-  --color-stone-500: #757575;
-  --color-stone-600: #575757;
-  --color-stone-700: #404040;
-  --color-stone-800: #2e2e2e;
-  --color-stone-900: #1f1f1f;
-
-  --color-red-50: #fcf2f2;
-  --color-red-100: #f9e3e2;
-  --color-red-200: #f6cccb;
-  --color-red-300: #f0a9a7;
-  --color-red-400: #e77975;
-  --color-red-500: #dd524c;
-  --color-red-600: #ca3a31;
-  --color-red-700: #aa2e26;
-  --color-red-800: #8c2822;
-  --color-red-900: #752522;
-
-  --color-orange-50: #fef7ee;
-  --color-orange-100: #fceed8;
-  --color-orange-200: #f8d8b0;
-  --color-orange-300: #f3bd7f;
-  --color-orange-400: #ed974f;
-  --color-orange-500: #e87b35;
-  --color-orange-600: #d9622b;
-  --color-orange-700: #b34a22;
-  --color-orange-800: #8e3b1f;
-  --color-orange-900: #73321b;
-
-  --color-green-50: #ebfcee;
-  --color-green-100: #e2fbe8;
-  --color-green-200: #c7f5d3;
-  --color-green-300: #a0ecb1;
-  --color-green-400: #77db89;
-  --color-green-500: #5ec269;
-  --color-green-600: #4ca154;
-  --color-green-700: #3c7e44;
-  --color-green-800: #306339;
-  --color-green-900: #285231;
-
-  --color-purple-50: #ebdff4;
-  --color-purple-100: #ddcaec;
-  --color-purple-200: #c0a0db;
-  --color-purple-300: #a475ca;
-  --color-purple-400: #874bb9;
-  --color-purple-500: #6b21a8;
-  --color-purple-600: #561a86;
-  --color-purple-700: #401465;
-  --color-purple-800: #2b0d43;
-  --color-purple-900: #200a32;
-
-  --color-blue-50: #ebf0ff;
-  --color-blue-100: #d7e1ff;
-  --color-blue-200: #aec2ff;
-  --color-blue-300: #86a4ff;
-  --color-blue-400: #5d85ff;
-  --color-blue-500: #3567ff;
-  --color-blue-600: #2a53ce;
-  --color-blue-700: #203f9e;
-  --color-blue-800: #152b6d;
-  --color-blue-900: #12204c;
-
-  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
-  --shadow-sm:
-    0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
-  --shadow-modal:
-    0 8px 24px -4px rgba(0, 0, 0, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
-  --shadow-dropdown:
-    0 4px 12px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
+
+
+/* 
+default shadcn semantic vars, to be removed later once we've swapped all components to Figma tokens
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #101010;
-  --card: #ffffff;
-  --card-foreground: #101010;
-  --popover: #ffffff;
-  --popover-foreground: #101010;
-  --primary: #3567ff;
-  --primary-foreground: #ffffff;
-  --secondary: #f3f4f6;
-  --secondary-foreground: #101010;
-  --muted: #f9fafb;
-  --muted-foreground: #6b7280;
-  --accent: #f3f4f6;
-  --accent-foreground: #101010;
-  --destructive: #dd524c;
-  --border: #e5e7eb;
-  --input: #e5e7eb;
-  --ring: #3567ff;
-
-  --chart-1: #3567ff;
-  --chart-2: #2a53ce;
-  --chart-3: #5ec269;
-  --chart-4: #e87b35;
-  --chart-5: #dd524c;
-
-  --radius: 0.5rem;
-
-  /* Figma Sidebar/Main (2014:5586): muted canvas, soft rail */
-  --sidebar: #f9fafb;
-  --sidebar-foreground: #374151;
-  --sidebar-primary: #3567ff;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #ebf0ff;
-  --sidebar-accent-foreground: #203f9e;
-  --sidebar-border: #e8ebf2;
-  --sidebar-ring: #3567ff;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.141 0.005 285.823);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.141 0.005 285.823);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.141 0.005 285.823);
+  --primary: oklch(0.488 0.243 264.376);
+  --primary-foreground: oklch(0.97 0.014 254.604);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.21 0.006 285.885);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.809 0.105 251.813);
+  --chart-2: oklch(0.623 0.214 259.815);
+  --chart-3: oklch(0.546 0.245 262.881);
+  --chart-4: oklch(0.488 0.243 264.376);
+  --chart-5: oklch(0.424 0.199 265.638);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.141 0.005 285.823);
+  --sidebar-primary: oklch(0.546 0.245 262.881);
+  --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
+  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
+  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
-  --background: #1f1f1f;
-  --foreground: #fcfcfd;
-  --card: #2e2e2e;
-  --card-foreground: #fcfcfd;
-  --popover: #2e2e2e;
-  --popover-foreground: #fcfcfd;
-  --primary: #3567ff;
-  --primary-foreground: #ffffff;
-  --secondary: #404040;
-  --secondary-foreground: #fcfcfd;
-  --muted: #2e2e2e;
-  --muted-foreground: #a5a5a5;
-  --accent: #404040;
-  --accent-foreground: #fcfcfd;
-  --destructive: #dd524c;
-  --border: #575757;
-  --input: #575757;
-  --ring: #3567ff;
-
-  --chart-1: #3567ff;
-  --chart-2: #5d85ff;
-  --chart-3: #5ec269;
-  --chart-4: #e87b35;
-  --chart-5: #dd524c;
-
-  --sidebar: #1f1f1f;
-  --sidebar-foreground: #d6d6d6;
-  --sidebar-primary: #3567ff;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #404040;
-  --sidebar-accent-foreground: #d7e1ff;
-  --sidebar-border: #404040;
-  --sidebar-ring: #3567ff;
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.488 0.243 264.376);
+  --primary-foreground: oklch(0.97 0.014 254.604);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.809 0.105 251.813);
+  --chart-2: oklch(0.623 0.214 259.815);
+  --chart-3: oklch(0.546 0.245 262.881);
+  --chart-4: oklch(0.488 0.243 264.376);
+  --chart-5: oklch(0.424 0.199 265.638);
+  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.623 0.214 259.815);
+  --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
+  --sidebar-accent: oklch(0.274 0.006 286.033);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.439 0 0);
 }
 
 @layer base {

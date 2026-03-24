@@ -15,7 +15,7 @@ const navItemClass =
   "h-auto min-h-0 rounded-md py-2 pr-2 pl-2 text-sm font-medium leading-4 gap-2 text-[#374151] hover:bg-black/[0.04] hover:text-[#374151] dark:text-stone-200 dark:hover:bg-white/[0.06] dark:hover:text-stone-200"
 
 const navItemActiveClass =
-  "bg-brand-50 text-brand-700 hover:bg-brand-50 hover:text-brand-700 [&_svg]:text-brand-700 dark:bg-brand-950/40 dark:text-[#93b4ff] dark:hover:bg-brand-950/40 dark:[&_svg]:text-[#93b4ff]"
+  "bg-brand-50 text-brand-700 hover:text-brand-700 [&_svg]:text-brand-700 dark:bg-brand-950/40 dark:text-[#93b4ff] dark:hover:bg-brand-950/40 dark:[&_svg]:text-[#93b4ff]"
 
 export function BasicNav({
   items,
