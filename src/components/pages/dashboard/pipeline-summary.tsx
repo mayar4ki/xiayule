@@ -22,21 +22,21 @@ export function PipelineSummary({
   const maxCount = Math.max(...stages.map((s) => s.count));
 
   return (
-    <div className="rounded-[14px] border border-[#e1e4ed] bg-(--bg-default) dark:border-[#575757] dark:bg-card">
+    <div className="rounded-[14px] border border-pipeline-border bg-(--bg-default) dark:border-stone-600 dark:bg-card">
       <div className="flex flex-col gap-1 px-5 pt-5 pb-6">
         <div className="flex items-center justify-between">
-          <h3 className="font-heading text-base leading-[1.3rem] font-medium text-[#091026] dark:text-[#fcfcfd]">
+          <h3 className="text-compact-sm font-medium  dark:text-stone-50">
             Pipeline Summary
           </h3>
           <button
             type="button"
-            className="font-heading flex items-center gap-0.5 text-xs leading-[1.125rem] font-semibold text-[#3567ff] hover:opacity-90 dark:text-[#5d85ff]"
+            className="font-heading flex items-center gap-0.5 text-xs leading-[1.125rem] font-semibold text-brand-500 hover:opacity-90 dark:text-brand-400"
           >
             Details
             <ArrowUpRightIcon className="size-3" strokeWidth={2} />
           </button>
         </div>
-        <p className="text-xs leading-[1.125rem] font-normal text-[#6e7991] dark:text-[#a5a5a5]">
+        <p className="text-xs leading-[1.125rem] font-normal text-gray-400 dark:text-stone-400">
           {totalDeals} deals across {totalStages} stages · {totalValue} total
           value
         </p>
@@ -49,11 +49,11 @@ export function PipelineSummary({
           return (
             <div key={stage.stage} className="flex h-[30px] items-center gap-0">
               <div className="w-[100px] shrink-0 pr-3 text-right">
-                <span className="inline-block text-xs leading-[1.125rem] font-medium text-[#3d4a65] dark:text-[#d6d6d6]">
+                <span className="inline-block text-xs leading-[1.125rem] font-medium text-pipeline-stage dark:text-stone-300">
                   {stage.stage}
                 </span>
               </div>
-              <div className="relative h-[30px] flex-1 overflow-hidden rounded-[8px] bg-[#f1f3f7] dark:bg-[#1f1f1f]">
+              <div className="relative h-[30px] flex-1 overflow-hidden rounded-lg bg-pipeline-track dark:bg-stone-900">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{
@@ -65,19 +65,19 @@ export function PipelineSummary({
                     ease: "easeOut",
                   }}
                   className={cn(
-                    "flex h-full items-center rounded-[8px] pl-0.5",
-                    isDarkBar && "bg-[#314174] dark:bg-[#203f9e]",
+                    "flex h-full items-center rounded-lg pl-0.5",
+                    isDarkBar && "bg-brand-800 dark:bg-brand-700",
                     !isDarkBar &&
-                    "bg-[linear-gradient(to_right,rgb(209_250_229/0.9),rgb(224_242_254/0.8))] dark:bg-[linear-gradient(to_right,rgb(16_185_129/0.35),rgb(14_165_233/0.28))]",
+                    "bg-gradient-to-r from-emerald-200/90 to-sky-200/80 dark:from-emerald-500/35 dark:to-sky-500/28",
                   )}
                 >
                   {stage.count > 0 && (
                     <div
                       className={cn(
-                        "flex h-6 items-center gap-2 rounded-[6px] px-1.5",
+                        "flex h-6 items-center gap-2 rounded-md px-1.5",
                         isDarkBar
-                          ? "bg-[rgb(255_255_255/0.15)]"
-                          : "bg-[rgb(255_255_255/0.6)] dark:bg-[rgb(30_41_55/0.4)]",
+                          ? "bg-white/15"
+                          : "bg-white/60 dark:bg-slate-800/40",
                       )}
                     >
                       <span
@@ -85,7 +85,7 @@ export function PipelineSummary({
                           "text-xs leading-none font-bold",
                           isDarkBar
                             ? "text-white"
-                            : "text-[#1f2937] dark:text-[#e8e8e8]",
+                            : "text-gray-800 dark:text-stone-200",
                         )}
                       >
                         {stage.count}
@@ -95,8 +95,8 @@ export function PipelineSummary({
                           className={cn(
                             "text-[0.6875rem] leading-none font-medium",
                             isDarkBar
-                              ? "text-[rgb(255_255_255/0.7)]"
-                              : "text-[#4b5563] dark:text-[#a5a5a5]",
+                              ? "text-white/70"
+                              : "text-gray-600 dark:text-stone-400",
                           )}
                         >
                           {formatValue(stage.value, stage.currency)}

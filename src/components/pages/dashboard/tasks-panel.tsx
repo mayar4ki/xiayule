@@ -16,15 +16,15 @@ export function TasksPanel({ completed, total, items, onToggleTask }: TasksPanel
 
   return (
     <div className="flex flex-col overflow-hidden rounded-[14px] border border-[#e1e4ed] bg-white dark:border-stone-600 dark:bg-stone-800">
-      <div className="border-b border-[#f1f3f7] px-5 pt-4 pb-3 dark:border-stone-700">
+      <div className="border-b border-[#f1f3f7] px-5 pt-5.5 pb-3 dark:border-stone-700">
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between gap-2">
-            <h3 className="font-heading text-base font-medium leading-5 text-[#091026] dark:text-stone-50">
+            <h3 className="font-heading text-compact-base font-extrabold leading-5 text-[#091026] dark:text-stone-50">
               Tasks &amp; Reminders
             </h3>
             <button
               type="button"
-              className="font-heading flex shrink-0 items-center gap-0.5 text-xs font-semibold text-[#3567ff] hover:text-brand-600"
+              className="font-heading flex shrink-0 mx-2 items-center gap-0.5 text-xs font-semibold text-[#3567ff] hover:text-brand-600"
             >
               <PlusIcon className="size-3.5" strokeWidth={2} />
               Quick add

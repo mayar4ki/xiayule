@@ -22,7 +22,7 @@ export function KPICard({ kpi }: KPICardProps) {
         </p>
       </div>
       <div className="flex flex-col items-end gap-1.5">
-        <SparklineChart data={kpi.sparklineData} color={isUp ? "#3567FF" : "#DD524C"} />
+        <SparklineChart data={kpi.sparklineData} color={isUp ? "#188540" : "#DD524C"} />
         <span
           className={`inline-flex items-center gap-0.5 rounded-full px-[3px] py-0.5 text-[10px] font-semibold leading-[8px] ${isUp
             ? "bg-[#f0fdf4] text-[#188540] dark:bg-green-900/30 dark:text-green-300"

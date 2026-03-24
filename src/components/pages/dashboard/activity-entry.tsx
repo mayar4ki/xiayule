@@ -93,7 +93,7 @@ export function ActivityEntry({ entry }: ActivityEntryProps) {
   return (
     <div className="relative min-h-[62.5px] pt-3">
       <div
-        className={`absolute left-5 top-3 z-1 flex size-[28px] items-center justify-center rounded-full shadow-[0px_0px_0px_0px_white] dark:border-stone-600 ${config.bg} dark:ring-1 dark:ring-stone-600`}
+        className={`absolute left-5 top-3 z-1 flex size-[28px] items-center justify-center rounded-full shadow-[0px_0px_0px_0px_white] dark:border-stone-600 bg-gray-50 dark:ring-1 dark:ring-stone-600`}
       >
         <Icon
           className="size-[13px] text-(--content-default)"
@@ -102,7 +102,7 @@ export function ActivityEntry({ entry }: ActivityEntryProps) {
         />
       </div>
       <div className="relative z-1 pb-3 pl-[60px] pr-0">
-        <p className="text-xs leading-[18px] text-(--content-default) dark:text-stone-100">
+        <p className="text-xs leading-[18px]  dark:text-stone-100">
           {actor ? (
             <>
               <span className="font-semibold">{actor}</span>{" "}

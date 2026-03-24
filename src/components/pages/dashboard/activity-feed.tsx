@@ -28,7 +28,7 @@ export function ActivityFeed({ groups }: ActivityFeedProps) {
             <div className="px-0.5 pb-0 pt-0">
               <div className="relative">
                 <div
-                  className="absolute bottom-0 left-[33px] top-0 z-0 w-px bg-[#e1e4ed] dark:bg-stone-600"
+                  className="absolute bottom-0 left-[33px] top-0 z-0 w-px bg-gray-300 dark:bg-stone-600"
                   aria-hidden
                 />
                 {group.entries.map((entry) => (
