@@ -39,13 +39,63 @@
   --color-stone-800: #2e2e2e;
   --color-stone-900: #1f1f1f;
   --color-stone-950: #121212;
+
+  /*
+   * Typography — Figma "Type" (node 1:14032) + file text styles / variables.
+   * Pair titles with: font-heading font-extrabold
+   * Pair body / UI with: font-sans + font-normal | font-medium | font-semibold
+   * Mono: font-mono (14px compact) or IBM Plex / system stack for multiline mono token below.
+   */
+  --text-title-1: 1.75rem;
+  --text-title-1--line-height: 1.75rem;
+  --text-title-1--letter-spacing: 0.01em;
+
+  --text-title-2: 1.5rem;
+  --text-title-2--line-height: 1.5rem;
+  --text-title-2--letter-spacing: 0.01em;
+
+  --text-title-3: 1.25rem;
+  --text-title-3--line-height: 1.25rem;
+  --text-title-3--letter-spacing: 0.01em;
+
+  /* leading-none/text-sm/* — single-line UI, 14px / 16px */
+  --text-compact-sm: 0.875rem;
+  --text-compact-sm--line-height: 1rem;
+
+  /* leading-none/text-xs/* — 12px / 12px */
+  --text-compact-xs: 0.75rem;
+  --text-compact-xs--line-height: 0.75rem;
+
+  /* leading-none/text-xxs/* — 10px / 10px */
+  --text-compact-2xs: 0.625rem;
+  --text-compact-2xs--line-height: 0.625rem;
+
+  /* leading-none/text-base/semibold — 16px / 16px */
+  --text-compact-base: 1rem;
+  --text-compact-base--line-height: 1rem;
+
+  /* leading-normal/text-sm/* — multiline body, 14px / 20px */
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.25rem;
+
+  /* leading-normal/text-xs/Mono — IBM Plex Mono, 10px / 16px (Figma multiline mono) */
+  --text-body-mono-2xs: 0.625rem;
+  --text-body-mono-2xs--line-height: 1rem;
+
+  /* Docs / marketing hero on spec frame — Inter Black 32 / 40 */
+  --text-display: 2rem;
+  --text-display--line-height: 2.5rem;
+  --text-display--letter-spacing: -0.01em;
+
+  /* Figma Segment/Text (0:1962) — date filter tabs */
+  --text-segment: 0.8125rem;
+  --text-segment--line-height: 1.25rem;
 }
 
 /* =============================================================================
  * tokens / colors / aliases
  * ============================================================================= */
 :root {
-
   --radius: 0.5rem;
 
   /* bg.* */
@@ -126,10 +176,9 @@
  * delete this whole block and wire @theme to --bg-default / --content-* / …)
  * ----------------------------------------------------------------------------- */
 
- @custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:is(.dark *));
 
- @theme inline {
-
+@theme inline {
   --font-sans: var(--font-inter);
   --font-mono: var(--font-mono-fallback, ui-monospace, monospace);
   --font-heading: var(--font-figtree);
@@ -170,10 +219,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-
 }
-
-
 
 /* 
 default shadcn semantic vars, to be removed later once we've swapped all components to Figma tokens

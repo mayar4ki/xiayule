@@ -23,7 +23,7 @@ export function PipelineSummary({
 
   return (
     <div className="rounded-[14px] border border-[#e1e4ed] bg-(--bg-default) dark:border-[#575757] dark:bg-card">
-      <div className="flex flex-col gap-1 px-5 pt-5 pb-4">
+      <div className="flex flex-col gap-1 px-5 pt-5 pb-6">
         <div className="flex items-center justify-between">
           <h3 className="font-heading text-base leading-[1.3rem] font-medium text-[#091026] dark:text-[#fcfcfd]">
             Pipeline Summary
@@ -48,7 +48,7 @@ export function PipelineSummary({
           const isDarkBar = i < 4;
           return (
             <div key={stage.stage} className="flex h-[30px] items-center gap-0">
-              <div className="w-[88px] shrink-0 pr-3 text-right">
+              <div className="w-[100px] shrink-0 pr-3 text-right">
                 <span className="inline-block text-xs leading-[1.125rem] font-medium text-[#3d4a65] dark:text-[#d6d6d6]">
                   {stage.stage}
                 </span>
@@ -68,7 +68,7 @@ export function PipelineSummary({
                     "flex h-full items-center rounded-[8px] pl-0.5",
                     isDarkBar && "bg-[#314174] dark:bg-[#203f9e]",
                     !isDarkBar &&
-                      "bg-[linear-gradient(to_right,rgb(209_250_229/0.9),rgb(224_242_254/0.8))] dark:bg-[linear-gradient(to_right,rgb(16_185_129/0.35),rgb(14_165_233/0.28))]",
+                    "bg-[linear-gradient(to_right,rgb(209_250_229/0.9),rgb(224_242_254/0.8))] dark:bg-[linear-gradient(to_right,rgb(16_185_129/0.35),rgb(14_165_233/0.28))]",
                   )}
                 >
                   {stage.count > 0 && (

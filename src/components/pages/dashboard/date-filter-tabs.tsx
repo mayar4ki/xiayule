@@ -42,7 +42,7 @@ export function DateFilterTabs({ period, onPeriodChange }: DateFilterTabsProps) 
           <TabsTrigger
             key={tab.value}
             value={tab.value}
-            className=" text-sm  py-3"
+            className=" py-3"
           >
             {tab.label}
           </TabsTrigger>

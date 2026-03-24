@@ -2,7 +2,7 @@ import { Skeleton } from "~/components/ui/skeleton"
 
 export function DashboardSkeleton() {
   return (
-    <div className="mx-auto flex w-full max-w-[1204px] flex-1 flex-col gap-[26px] overflow-auto px-[30px] pb-10 pt-[25px]">
+    <div className=" flex w-full max-w-[1204px] flex-1 flex-col gap-[26px] overflow-auto px-[30px] pb-10 pt-[25px]">
       <div className="flex flex-col gap-[18px]">
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-col gap-2">

@@ -1,6 +1,6 @@
 import { Figtree, Inter } from "next/font/google";
-import { ThemeProvider } from "~/providers/theme-provider";
 import type { Metadata } from "next/types";
+import { ThemeProvider } from "~/providers/theme-provider";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -12,7 +12,7 @@ const figtree = Figtree({
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "900"],
 });
 
 export const metadata: Metadata = {
