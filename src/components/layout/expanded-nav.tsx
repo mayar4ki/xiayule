@@ -19,6 +19,7 @@ import { ChevronRightIcon } from "lucide-react"
 
 export function ExpandedNav({
   items,
+  label,
 }: {
   items: {
     title: string
@@ -30,10 +31,11 @@ export function ExpandedNav({
       url: string
     }[]
   }[]
+  label?: string
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      {label && <SidebarGroupLabel className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">{label}</SidebarGroupLabel>}
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible

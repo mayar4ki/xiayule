@@ -1,11 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 
 export default function Home() {
   return (
-    <div >
-      <Button> <Link href="/dashboard">Dashboard</Link></Button>
+    <div className="flex min-h-screen items-center justify-center">
+      <Button asChild>
+        <Link href="/dashboard">Go to Dashboard</Link>
+      </Button>
     </div>
   );
 }
