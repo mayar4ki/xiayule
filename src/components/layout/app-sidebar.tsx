@@ -140,7 +140,7 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" className="border-none" {...props}>
-      <SidebarHeader className="p-0 px-3 pt-4 pb-3">
+      <SidebarHeader className="p-0 px-3 pt-3 pb-1.5">
         <NavUser user={data.user} />
       </SidebarHeader>
       <SearchForm />

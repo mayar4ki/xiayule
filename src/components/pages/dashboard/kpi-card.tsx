@@ -1,6 +1,6 @@
 "use client"
 
-import { TrendingUpIcon, TrendingDownIcon } from "lucide-react"
+import { TrendingDownIcon, TrendingUpIcon } from "lucide-react"
 import type { DashboardKPI } from "~/types/dashboard"
 import { SparklineChart } from "./sparkline-chart"
 
@@ -12,8 +12,8 @@ export function KPICard({ kpi }: KPICardProps) {
   const isUp = kpi.trendDirection === "up"
 
   return (
-    <div className="relative flex min-h-[58px] items-center justify-between rounded-[12px] bg-white px-4 py-3 dark:bg-stone-800">
-      <div className="flex flex-col gap-2">
+    <div className="relative flex min-h-[58px] items-center justify-between rounded-[12px] bg-white px-4 py-2 dark:bg-stone-800">
+      <div className="flex flex-col gap-0">
         <p className="text-xs font-medium leading-5 text-[#5f5f5f] dark:text-stone-400">
           {kpi.label}
         </p>
@@ -24,11 +24,10 @@ export function KPICard({ kpi }: KPICardProps) {
       <div className="flex flex-col items-end gap-1.5">
         <SparklineChart data={kpi.sparklineData} color={isUp ? "#3567FF" : "#DD524C"} />
         <span
-          className={`inline-flex items-center gap-0.5 rounded-full px-[3px] py-0.5 text-[10px] font-semibold leading-[8px] ${
-            isUp
-              ? "bg-[#f0fdf4] text-[#188540] dark:bg-green-900/30 dark:text-green-300"
-              : "bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300"
-          }`}
+          className={`inline-flex items-center gap-0.5 rounded-full px-[3px] py-0.5 text-[10px] font-semibold leading-[8px] ${isUp
+            ? "bg-[#f0fdf4] text-[#188540] dark:bg-green-900/30 dark:text-green-300"
+            : "bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300"
+            }`}
         >
           {isUp ? (
             <TrendingUpIcon className="size-2.5" />

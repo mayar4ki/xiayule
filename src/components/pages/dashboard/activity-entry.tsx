@@ -1,28 +1,28 @@
 import {
-  UsersIcon,
-  HandshakeIcon,
-  PhoneIcon,
-  MailIcon,
-  StickyNoteIcon,
-  ListChecksIcon,
   BadgeDollarSignIcon,
-} from "lucide-react"
+  HandshakeIcon,
+  ListChecksIcon,
+  MailIcon,
+  PhoneIcon,
+  StickyNoteIcon,
+  UsersIcon,
+} from "lucide-react";
 import type {
   ActivityEntry as ActivityEntryType,
   ActivityHighlight,
-} from "~/types/dashboard"
+} from "~/types/dashboard";
 
 const iconConfig: Record<
   ActivityEntryType["icon"],
   { icon: React.ElementType; bg: string }
 > = {
-  lead: { icon: UsersIcon, bg: "bg-[#fafafa]" },
-  deal: { icon: HandshakeIcon, bg: "bg-[#fafafa]" },
-  call: { icon: PhoneIcon, bg: "bg-[#fafafa]" },
-  email: { icon: MailIcon, bg: "bg-[#f7f9fc]" },
-  note: { icon: StickyNoteIcon, bg: "bg-[#eaf4ff]" },
-  task: { icon: ListChecksIcon, bg: "bg-[#f0fdf4]" },
-  commission: { icon: BadgeDollarSignIcon, bg: "bg-[#fff8ed]" },
+  lead: { icon: UsersIcon, bg: "bg-(--bg-subtle)" },
+  deal: { icon: HandshakeIcon, bg: "bg-(--bg-subtle)" },
+  call: { icon: PhoneIcon, bg: "bg-(--bg-subtle)" },
+  email: { icon: MailIcon, bg: "bg-(--bg-subtle)" },
+  note: { icon: StickyNoteIcon, bg: "bg-(--bg-subtle)" },
+  task: { icon: ListChecksIcon, bg: "bg-(--bg-subtle)" },
+  commission: { icon: BadgeDollarSignIcon, bg: "bg-(--bg-subtle)" },
 }
 
 function highlightClass(h: ActivityHighlight) {
@@ -93,26 +93,26 @@ export function ActivityEntry({ entry }: ActivityEntryProps) {
   return (
     <div className="relative min-h-[62.5px] pt-3">
       <div
-        className={`absolute left-5 top-3 z-1 flex size-[28px] items-center justify-center rounded-full border border-[#e1e4ed] shadow-[0px_0px_0px_0px_white] dark:border-stone-600 ${config.bg} dark:ring-1 dark:ring-stone-600`}
+        className={`absolute left-5 top-3 z-1 flex size-[28px] items-center justify-center rounded-full shadow-[0px_0px_0px_0px_white] dark:border-stone-600 ${config.bg} dark:ring-1 dark:ring-stone-600`}
       >
         <Icon
-          className="size-[13px] text-[#3567ff] dark:text-[#5b82ff]"
+          className="size-[13px] text-(--content-default)"
           strokeWidth={2}
           aria-hidden
         />
       </div>
       <div className="relative z-1 pb-3 pl-[60px] pr-0">
-        <p className="text-xs leading-[18px] text-[#091026] dark:text-stone-100">
+        <p className="text-xs leading-[18px] text-(--content-default) dark:text-stone-100">
           {actor ? (
             <>
               <span className="font-semibold">{actor}</span>{" "}
-              {bodyContent}
+              <span className="text-(--content-default)">{bodyContent}</span>
             </>
           ) : (
-            bodyContent
+            <span className="text-(--content-default)">{bodyContent}</span>
           )}
         </p>
-        <p className="mt-0.5 text-[11px] font-normal leading-[16.5px] text-[#a0a9bd] dark:text-stone-500">
+        <p className="mt-0.5 text-[11px] font-normal leading-[16.5px] text-(--content-subtle) dark:text-stone-500">
           {entry.relativeTime}
         </p>
       </div>

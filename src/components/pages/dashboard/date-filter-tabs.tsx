@@ -1,6 +1,12 @@
 "use client"
 
-import { motion } from "framer-motion"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "~/components/ui/tabs"
+import { cn } from "~/lib/utils"
 import type { Period } from "~/types/dashboard"
 
 const tabs: { label: string; value: Period }[] = [
@@ -19,28 +25,38 @@ interface DateFilterTabsProps {
 
 export function DateFilterTabs({ period, onPeriodChange }: DateFilterTabsProps) {
   return (
-    <div className="inline-flex items-center overflow-x-auto rounded-[10px] bg-gray-100 p-1 dark:bg-stone-800 max-w-full">
-      {tabs.map((tab) => {
-        const isActive = period === tab.value
-        return (
-          <button
+    <Tabs
+      value={period}
+      onValueChange={(v) => onPeriodChange(v as Period)}
+      orientation="horizontal"
+      className="w-full max-w-[558px] gap-0"
+    >
+      <TabsList
+
+        className={cn(
+          "w-full justify-stretch gap-0 rounded-lg bg-(--bg-subtle)  p-1 shadow-none ",
+        )}
+        data-name="Segment/Text"
+      >
+        {tabs.map((tab) => (
+          <TabsTrigger
             key={tab.value}
-            type="button"
-            onClick={() => onPeriodChange(tab.value)}
-            className="relative z-10 flex flex-1 items-center justify-center rounded-md px-3 py-1.5 text-[13px] font-medium transition-colors whitespace-nowrap"
-            style={{ color: isActive ? "#303030" : "#9CA3AF" }}
+            value={tab.value}
+            className=" text-sm  py-3"
           >
-            {isActive && (
-              <motion.div
-                layoutId="active-tab"
-                className="absolute inset-0 rounded-md bg-white shadow-[0px_0px_2px_0px_rgba(0,0,0,0.06),0px_1px_3px_0px_rgba(0,0,0,0.1)] dark:bg-stone-700"
-                transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
-              />
-            )}
-            <span className="relative z-10">{tab.label}</span>
-          </button>
-        )
-      })}
-    </div>
+            {tab.label}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+      {tabs.map((tab) => (
+        <TabsContent
+          key={tab.value}
+          value={tab.value}
+          aria-hidden
+          tabIndex={-1}
+          className="hidden"
+        />
+      ))}
+    </Tabs>
   )
 }

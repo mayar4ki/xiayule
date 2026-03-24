@@ -25,7 +25,7 @@ export function ActivityFeed({ groups }: ActivityFeedProps) {
                 {group.label}
               </p>
             </div>
-            <div className="px-5 pb-0 pt-0">
+            <div className="px-0.5 pb-0 pt-0">
               <div className="relative">
                 <div
                   className="absolute bottom-0 left-[33px] top-0 z-0 w-px bg-[#e1e4ed] dark:bg-stone-600"
