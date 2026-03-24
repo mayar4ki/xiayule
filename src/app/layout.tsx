@@ -1,6 +1,10 @@
 import { Figtree, Inter } from "next/font/google";
 import type { Metadata } from "next/types";
+import { JotaiProvider } from "~/providers/jotai-provider";
+import { QueryClientProvider } from "~/providers/query-client-provider";
 import { ThemeProvider } from "~/providers/theme-provider";
+import { AppToaster } from "~/providers/toaster-provider";
+import { TooltipProvider } from "~/providers/tooltip-provider";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -38,7 +42,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <QueryClientProvider>
+            <JotaiProvider>
+              <TooltipProvider>{children}</TooltipProvider>
+              <AppToaster />
+            </JotaiProvider>
+          </QueryClientProvider>
         </ThemeProvider>
       </body>
     </html>

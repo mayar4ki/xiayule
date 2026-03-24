@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
-import { toast } from "sonner"
+import { RotateCcw } from "lucide-react";
+import { toast } from "sonner";
 import {
   ActivityFeed,
   DashboardHeader,
@@ -9,9 +10,9 @@ import {
   PipelineSummary,
   RevenueForecast,
   TasksPanel,
-} from "~/components/pages/dashboard"
-import { useDashboard } from "~/hooks/use-dashboard"
-import type { Period } from "~/types/dashboard"
+} from "~/components/pages/dashboard";
+import { useDashboard } from "~/hooks/use-dashboard";
+import type { Period } from "~/types/dashboard";
 
 const periodLabels: Record<Period, string> = {
   today: "Today",
@@ -20,7 +21,7 @@ const periodLabels: Record<Period, string> = {
   this_quarter: "This Quarter",
   this_year: "This Year",
   custom: "Custom",
-}
+};
 
 export default function DashboardPage() {
   const {
@@ -33,31 +34,40 @@ export default function DashboardPage() {
     refetch,
     toggleTask,
     undoToggleTask,
-  } = useDashboard()
+  } = useDashboard();
 
   const handlePeriodChange = (newPeriod: Period) => {
-    changePeriod(newPeriod)
-    toast(`Dashboard updated to ${periodLabels[newPeriod]}`)
-  }
+    changePeriod(newPeriod);
+    toast.info(`Dashboard updated to ${periodLabels[newPeriod]}`);
+  };
 
   const handleToggleTask = (taskId: string) => {
-    const task = tasks?.items.find((t) => t.id === taskId)
-    if (!task) return
+    const task = tasks?.items.find((t) => t.id === taskId);
+    if (!task) return;
 
-    toggleTask(taskId)
+    toggleTask(taskId);
 
     if (!task.completed) {
       toast.success("Task completed", {
         action: {
-          label: "Undo",
+          label: (
+            <>
+              <RotateCcw
+                className="size-4 shrink-0"
+                aria-hidden
+                strokeWidth={2}
+              />
+              Undo
+            </>
+          ),
           onClick: () => undoToggleTask(taskId),
         },
-      })
+      });
     }
-  }
+  };
 
   if (isLoading) {
-    return <DashboardSkeleton />
+    return <DashboardSkeleton />;
   }
 
   if (isError) {
@@ -72,21 +82,21 @@ export default function DashboardPage() {
                 label: "Retry",
                 onClick: () => refetch(),
               },
-            })
-            refetch()
+            });
+            refetch();
           }}
           className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700"
         >
           Retry
         </button>
       </div>
-    )
+    );
   }
 
-  if (!data) return null
+  if (!data) return null;
 
   return (
-    <div className="border rounded-xl flex w-full max-w-[1204px] flex-1 flex-col gap-[26px] overflow-auto px-[30px] pb-10 pt-[25px]">
+    <div className="border rounded-xl flex w-full max-w-[1204px] flex-1 flex-col gap-[26px] overflow-auto px-[30px] pb-10 pt-[25px] bg-background">
       <DashboardHeader period={period} onPeriodChange={handlePeriodChange} />
 
       <KPICards kpis={data.kpis} />
@@ -119,5 +129,5 @@ export default function DashboardPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

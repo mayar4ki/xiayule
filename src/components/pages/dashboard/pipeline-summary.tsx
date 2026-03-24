@@ -22,7 +22,7 @@ export function PipelineSummary({
   const maxCount = Math.max(...stages.map((s) => s.count));
 
   return (
-    <div className="rounded-[14px] border border-pipeline-border bg-(--bg-default) dark:border-stone-600 dark:bg-card">
+    <div className="rounded-[14px] border border-pipeline-border bg-(--bg-default) dark:border-stone-600 ">
       <div className="flex flex-col gap-1 px-5 pt-5 pb-6">
         <div className="flex items-center justify-between">
           <h3 className="text-compact-sm font-medium  dark:text-stone-50">

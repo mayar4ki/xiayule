@@ -1,33 +1,47 @@
-"use client"
+"use client";
 
-import { TrendingDownIcon, TrendingUpIcon } from "lucide-react"
-import type { DashboardKPI } from "~/types/dashboard"
-import { SparklineChart } from "./sparkline-chart"
+import { motion, useReducedMotion } from "framer-motion";
+import { TrendingDownIcon, TrendingUpIcon } from "lucide-react";
+import type { DashboardKPI } from "~/types/dashboard";
+import { SparklineChart } from "./sparkline-chart";
 
 interface KPICardProps {
-  kpi: DashboardKPI
+  kpi: DashboardKPI;
 }
 
 export function KPICard({ kpi }: KPICardProps) {
-  const isUp = kpi.trendDirection === "up"
+  const isUp = kpi.trendDirection === "up";
+  const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative flex min-h-[58px] items-center justify-between rounded-[12px] bg-white px-4 py-2 dark:bg-stone-800">
+    <div className="relative flex min-h-[58px] items-center justify-between rounded-[12px] bg-(--bg-default) px-4 py-2 dark:bg-(--bg-subtle)">
       <div className="flex flex-col gap-0">
-        <p className="text-xs font-medium leading-5 text-[#5f5f5f] dark:text-stone-400">
+        <p className="text-xs font-medium leading-5 text-(--content-subtle)">
           {kpi.label}
         </p>
-        <p className="text-base font-semibold leading-5 text-black dark:text-stone-50">
-          {kpi.value}
+        <p className="text-base font-semibold leading-5 text-(--content-emphasis)">
+          <motion.span
+            key={kpi.value}
+            className="inline-block"
+            initial={reduceMotion ? false : { opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          >
+            {kpi.value}
+          </motion.span>
         </p>
       </div>
       <div className="flex flex-col items-end gap-1.5">
-        <SparklineChart data={kpi.sparklineData} color={isUp ? "#188540" : "#DD524C"} />
+        <SparklineChart
+          data={kpi.sparklineData}
+          color={isUp ? "var(--color-green-700)" : "var(--content-error)"}
+        />
         <span
-          className={`inline-flex items-center gap-0.5 rounded-full px-[3px] py-0.5 text-[10px] font-semibold leading-[8px] ${isUp
-            ? "bg-[#f0fdf4] text-[#188540] dark:bg-green-900/30 dark:text-green-300"
-            : "bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300"
-            }`}
+          className={`inline-flex items-center gap-0.5 rounded-full px-[3px] py-0.5 text-[10px] font-semibold leading-[8px] ${
+            isUp
+              ? "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+              : "bg-(--bg-error) text-(--content-error) dark:bg-red-900/30 dark:text-red-300"
+          }`}
         >
           {isUp ? (
             <TrendingUpIcon className="size-2.5" />
@@ -38,7 +52,7 @@ export function KPICard({ kpi }: KPICardProps) {
           {kpi.trend}%
         </span>
       </div>
-      <div className="pointer-events-none absolute inset-0 rounded-xl shadow-[inset_1px_0_0_rgba(0,0,0,0.03),inset_-1px_0_0_rgba(0,0,0,0.03),inset_0_-1px_0_rgba(0,0,0,0.07),inset_0_1px_0_rgba(204,204,204,0.4)] dark:shadow-[inset_1px_0_0_rgba(255,255,255,0.04),inset_-1px_0_0_rgba(255,255,255,0.04),inset_0_-1px_0_rgba(255,255,255,0.06),inset_0_1px_0_rgba(255,255,255,0.08)]" />
+      <div className="pointer-events-none absolute inset-0 rounded-xl shadow-[inset_0_0_0_1px_var(--border-muted)] dark:shadow-[inset_0_0_0_1px_var(--border-subtle)]" />
     </div>
-  )
+  );
 }

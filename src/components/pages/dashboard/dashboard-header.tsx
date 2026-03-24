@@ -1,17 +1,20 @@
-"use client"
+"use client";
 
-import { PlusIcon } from "lucide-react"
-import { toast } from "sonner"
-import { Button } from "~/components/ui/button"
-import type { Period } from "~/types/dashboard"
-import { DateFilterTabs } from "./date-filter-tabs"
+import { PlusIcon } from "lucide-react";
+import { toast } from "sonner";
+import { Button } from "~/components/ui/button";
+import type { Period } from "~/types/dashboard";
+import { DateFilterTabs } from "./date-filter-tabs";
 
 interface DashboardHeaderProps {
-  period: Period
-  onPeriodChange: (period: Period) => void
+  period: Period;
+  onPeriodChange: (period: Period) => void;
 }
 
-export function DashboardHeader({ period, onPeriodChange }: DashboardHeaderProps) {
+export function DashboardHeader({
+  period,
+  onPeriodChange,
+}: DashboardHeaderProps) {
   return (
     <div className="flex flex-col gap-[18px]">
       <div className="flex flex-wrap items-center justify-between gap-4">
@@ -23,15 +26,12 @@ export function DashboardHeader({ period, onPeriodChange }: DashboardHeaderProps
             Here&apos;s your pipeline health and sales activity at a glance.
           </p>
         </div>
-        <Button
-          onClick={() => toast("Feature coming soon")}
-
-        >
+        <Button onClick={() => toast.info("Feature coming soon")}>
           <PlusIcon className="size-4" strokeWidth={2} />
           Create
         </Button>
       </div>
       <DateFilterTabs period={period} onPeriodChange={onPeriodChange} />
     </div>
-  )
+  );
 }

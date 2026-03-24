@@ -27,9 +27,9 @@ const iconConfig: Record<
 
 function highlightClass(h: ActivityHighlight) {
   if (h.tone === "brand" || h.type === "deal" || h.type === "task") {
-    return "font-semibold text-[#3567ff]"
+    return "font-semibold text-(--brand-bg-default)"
   }
-  return "font-semibold text-[#476cdc]"
+  return "font-semibold text-brand-400"
 }
 
 function stripActor(message: string, actor?: string) {
@@ -93,7 +93,7 @@ export function ActivityEntry({ entry }: ActivityEntryProps) {
   return (
     <div className="relative min-h-[62.5px] pt-3">
       <div
-        className={`absolute left-5 top-3 z-1 flex size-[28px] items-center justify-center rounded-full shadow-[0px_0px_0px_0px_white] dark:border-stone-600 bg-gray-50 dark:ring-1 dark:ring-stone-600`}
+        className="absolute left-5 top-3 z-1 flex size-[28px] items-center justify-center rounded-full shadow-[0px_0px_0px_0px_var(--bg-default)] bg-(--bg-muted) dark:border-(--border-default) dark:ring-1 dark:ring-(--border-default)"
       >
         <Icon
           className="size-[13px] text-(--content-default)"
@@ -102,10 +102,10 @@ export function ActivityEntry({ entry }: ActivityEntryProps) {
         />
       </div>
       <div className="relative z-1 pb-3 pl-[60px] pr-0">
-        <p className="text-xs leading-[18px]  dark:text-stone-100">
+        <p className="text-xs leading-[18px]">
           {actor ? (
             <>
-              <span className="font-semibold">{actor}</span>{" "}
+              <span className="font-semibold text-(--content-emphasis)">{actor}</span>{" "}
               <span className="text-(--content-default)">{bodyContent}</span>
             </>
           ) : (

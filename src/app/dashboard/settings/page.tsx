@@ -1,7 +1,7 @@
 "use client"
 
 import { Settings2Icon } from "lucide-react"
-import { ThemeSettings } from "~/components/theme-settings"
+import { ThemeSettings } from "~/components/pages/settings/theme-settings"
 
 export default function SettingsPage() {
   return (
