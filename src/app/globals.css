@@ -47,6 +47,40 @@
   --brand-bg-subtle: var(--color-brand-100);
 
   --container-7xl: 70rem;
+
+  /* Dashboard: Pipeline Summary card (Figma 0:2185) */
+  --dashboard-pipeline-border: #e1e4ed;
+  --dashboard-pipeline-radius: 14px;
+  --dashboard-pipeline-title-color: #091026;
+  --dashboard-pipeline-title-size: 1rem;
+  --dashboard-pipeline-title-leading: 1.3rem;
+  --dashboard-pipeline-caption-color: #6e7991;
+  --dashboard-pipeline-caption-size: 0.75rem;
+  --dashboard-pipeline-caption-leading: 1.125rem;
+  --dashboard-pipeline-link-color: var(--color-brand-500);
+  --dashboard-pipeline-link-size: 0.75rem;
+  --dashboard-pipeline-link-leading: 1.125rem;
+  --dashboard-pipeline-stage-color: #3d4a65;
+  --dashboard-pipeline-stage-size: 0.75rem;
+  --dashboard-pipeline-stage-leading: 1.125rem;
+  --dashboard-pipeline-row-gap: 1rem;
+  --dashboard-pipeline-bar-height: 30px;
+  --dashboard-pipeline-bar-radius: 8px;
+  --dashboard-pipeline-track-bg: #f1f3f7;
+  --dashboard-pipeline-bar-fill: #314174;
+  --dashboard-pipeline-chip-height: 24px;
+  --dashboard-pipeline-chip-radius: 6px;
+  --dashboard-pipeline-chip-count-size: 0.75rem;
+  --dashboard-pipeline-chip-value-size: 0.6875rem;
+  --dashboard-pipeline-label-width: 88px;
+  --dashboard-pipeline-chip-overlay-on-dark: rgb(255 255 255 / 0.15);
+  --dashboard-pipeline-chip-overlay-on-light: rgb(255 255 255 / 0.6);
+  --dashboard-pipeline-chip-count-on-dark: #ffffff;
+  --dashboard-pipeline-chip-value-on-dark: rgb(255 255 255 / 0.7);
+  --dashboard-pipeline-chip-count-on-light: var(--color-gray-800);
+  --dashboard-pipeline-chip-value-on-light: var(--color-gray-600);
+  --dashboard-pipeline-light-bar-start: rgb(209 250 229 / 0.9);
+  --dashboard-pipeline-light-bar-end: rgb(224 242 254 / 0.8);
 }
 
 .dark {
@@ -84,6 +118,19 @@
   --brand-bg-emphasis: var(--color-brand-100);
   --brand-bg-default: var(--color-brand-500);
   --brand-bg-subtle: var(--color-brand-900);
+
+  --dashboard-pipeline-border: var(--color-stone-600);
+  --dashboard-pipeline-title-color: var(--color-stone-50);
+  --dashboard-pipeline-caption-color: var(--color-stone-400);
+  --dashboard-pipeline-link-color: var(--color-brand-400);
+  --dashboard-pipeline-stage-color: var(--color-stone-300);
+  --dashboard-pipeline-track-bg: var(--color-stone-900);
+  --dashboard-pipeline-bar-fill: var(--color-brand-700);
+  --dashboard-pipeline-chip-overlay-on-light: rgb(30 41 59 / 0.4);
+  --dashboard-pipeline-chip-count-on-light: var(--color-stone-200);
+  --dashboard-pipeline-chip-value-on-light: var(--color-stone-400);
+  --dashboard-pipeline-light-bar-start: rgb(16 185 129 / 0.35);
+  --dashboard-pipeline-light-bar-end: rgb(14 165 233 / 0.28);
 }
 
 /* -----------------------------------------------------------------------------

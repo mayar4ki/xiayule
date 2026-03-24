@@ -36,7 +36,7 @@
   },
   "overrides": [
     {
-      "includes": ["src/components/icons/figma/**/*.tsx"],
+      "includes": ["src/components/icons/**/*.tsx"],
       "linter": {
         "rules": {
           "a11y": {

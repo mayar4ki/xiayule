@@ -1,5 +1,6 @@
 "use client"
 
+import { ArrowUpRightIcon, TrendingUpIcon } from "lucide-react"
 import {
   Area,
   AreaChart,
@@ -9,7 +10,6 @@ import {
   XAxis,
   YAxis,
 } from "recharts"
-import { TrendingUpIcon, ArrowUpRightIcon } from "lucide-react"
 import type { RevenueDataPoint } from "~/types/dashboard"
 
 interface RevenueForecastProps {
@@ -26,7 +26,7 @@ function formatYAxis(value: number): string {
 export function RevenueForecast({ total, trend, data }: RevenueForecastProps) {
   return (
     <div className="relative rounded-[14px] border border-[#e1e4ed] bg-white dark:border-stone-600 dark:bg-stone-800">
-      <div className="flex flex-col gap-1 px-5 pt-4">
+      <div className="flex flex-col gap-1.5 px-5 pt-4">
         <div className="flex items-center justify-between">
           <p className="text-sm font-normal leading-5 text-[#686868] dark:text-stone-400">
             Revenue Forecast
@@ -51,7 +51,7 @@ export function RevenueForecast({ total, trend, data }: RevenueForecastProps) {
             <span className="text-xs leading-[18px] text-[#a0a9bd] dark:text-stone-500">vs last year</span>
           </div>
         </div>
-        <div className="flex items-center gap-5 pt-1">
+        <div className="flex items-center gap-5 pt-2">
           <div className="flex items-center gap-1.5">
             <div className="h-[3px] w-3 shrink-0 rounded-full bg-[#3567ff]" />
             <span className="font-heading text-[11px] font-medium leading-[16.5px] text-[#6e7991] dark:text-stone-400">
@@ -67,7 +67,7 @@ export function RevenueForecast({ total, trend, data }: RevenueForecastProps) {
         </div>
       </div>
 
-      <div className="h-[207px] w-full px-5 pb-5 pt-2">
+      <div className="h-[241px] w-full px-5 pb-5 pt-2">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
             <defs>

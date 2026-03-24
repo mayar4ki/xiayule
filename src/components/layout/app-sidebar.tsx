@@ -14,19 +14,19 @@ import {
   SidebarRail,
 } from "~/components/ui/sidebar"
 import {
-  FigmaIconBuilding,
-  FigmaIconCalendar,
-  FigmaIconCircleCheck,
-  FigmaIconGear,
-  FigmaIconInboxSpeech,
-  FigmaIconKanban,
-  FigmaIconLayoutColumns,
-  FigmaIconLayoutGrid,
-  FigmaIconPhone,
-  FigmaIconSettingsKnobs,
-  FigmaIconUserBadge,
-  FigmaIconUsersGroup,
-} from "../icons/figma"
+  IconBuilding,
+  IconCalendar,
+  IconCircleCheck,
+  IconGear,
+  IconInboxSpeech,
+  IconKanban,
+  IconLayoutColumns,
+  IconLayoutGrid,
+  IconPhone,
+  IconSettingsKnobs,
+  IconUserBadge,
+  IconUsersGroup,
+} from "../icons"
 
 const data = {
   user: {
@@ -41,7 +41,7 @@ const data = {
       {
         name: "Dashboard",
         url: "/dashboard",
-        icon: <FigmaIconLayoutGrid className="size-4 shrink-0" />,
+        icon: <IconLayoutGrid className="size-4 shrink-0" />,
       },
     ],
   },
@@ -51,36 +51,36 @@ const data = {
       {
         name: "Inbox",
         url: "/dashboard/inbox",
-        icon: <FigmaIconInboxSpeech className="size-4 shrink-0" />,
+        icon: <IconInboxSpeech className="size-4 shrink-0" />,
         disabled: true,
       },
       {
         name: "Leads",
         url: "/dashboard/leads",
-        icon: <FigmaIconUserBadge className="size-4 shrink-0" />,
+        icon: <IconUserBadge className="size-4 shrink-0" />,
       },
       {
         name: "Deals",
         url: "/dashboard/deals",
-        icon: <FigmaIconCircleCheck className="size-4 shrink-0" />,
+        icon: <IconCircleCheck className="size-4 shrink-0" />,
         disabled: true,
       },
       {
         name: "Contacts",
         url: "/dashboard/contacts",
-        icon: <FigmaIconPhone className="size-4 shrink-0" />,
+        icon: <IconPhone className="size-4 shrink-0" />,
         disabled: true,
       },
       {
         name: "Tasks",
         url: "/dashboard/tasks",
-        icon: <FigmaIconKanban className="size-4 shrink-0" />,
+        icon: <IconKanban className="size-4 shrink-0" />,
         disabled: true,
       },
       {
         name: "Calendar",
         url: "/dashboard/calendar",
-        icon: <FigmaIconCalendar className="size-4 shrink-0" />,
+        icon: <IconCalendar className="size-4 shrink-0" />,
         disabled: true,
       },
     ],
@@ -91,7 +91,7 @@ const data = {
       {
         title: "Properties",
         url: "#",
-        icon: <FigmaIconBuilding className="size-4 shrink-0" />,
+        icon: <IconBuilding className="size-4 shrink-0" />,
         isActive: false,
         items: [
           { title: "All Properties", url: "#" },
@@ -101,7 +101,7 @@ const data = {
       {
         title: "Marketing",
         url: "#",
-        icon: <FigmaIconSettingsKnobs className="size-4 shrink-0" />,
+        icon: <IconSettingsKnobs className="size-4 shrink-0" />,
         isActive: false,
         items: [
           { title: "Campaigns", url: "#" },
@@ -111,7 +111,7 @@ const data = {
       {
         title: "Reports",
         url: "#",
-        icon: <FigmaIconLayoutColumns className="size-4 shrink-0" />,
+        icon: <IconLayoutColumns className="size-4 shrink-0" />,
         isActive: false,
         items: [
           { title: "Sales Report", url: "#" },
@@ -125,13 +125,13 @@ const data = {
       {
         name: "Team",
         url: "/dashboard/team",
-        icon: <FigmaIconUsersGroup className="size-4 shrink-0" />,
+        icon: <IconUsersGroup className="size-4 shrink-0" />,
         disabled: true,
       },
       {
         name: "Settings",
         url: "/dashboard/settings",
-        icon: <FigmaIconGear className="size-4 shrink-0" />,
+        icon: <IconGear className="size-4 shrink-0" />,
       },
     ],
   },
