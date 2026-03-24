@@ -1,7 +1,14 @@
 "use client"
 
+import {
+  BellIcon,
+  ChevronsUpDownIcon,
+  CircleHelpIcon,
+  LogOutIcon,
+  UserIcon,
+} from "lucide-react"
 import Image from "next/image"
-import { BellIcon, ChevronsUpDownIcon, CircleHelpIcon, LogOutIcon, UserIcon } from "lucide-react"
+import { memo } from "react"
 import {
   Avatar,
   AvatarFallback,
@@ -23,7 +30,7 @@ import {
   useSidebar,
 } from "~/components/ui/sidebar"
 
-export function NavUser({
+export const NavUser = memo(({
   user,
 }: {
   user: {
@@ -33,7 +40,7 @@ export function NavUser({
     orgLogo: string
     badge?: string
   }
-}) {
+}) => {
   const { isMobile } = useSidebar()
 
   return (
@@ -43,26 +50,46 @@ export function NavUser({
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              className="h-auto min-h-0 gap-0.5 rounded-md p-1.5 pr-1 data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground group-data-[collapsible=icon]:size-10! group-data-[collapsible=icon]:p-1.5!"
             >
-              <Avatar className="size-9 rounded-full">
-                <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-full bg-brand-500 text-white text-xs font-semibold">
-                  {user.name.split(" ").map(n => n[0]).join("")}
-                </AvatarFallback>
-              </Avatar>
-              <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold text-gray-900 dark:text-stone-50">{user.name}</span>
-                <div className="flex items-center gap-1.5">
-                  <span className="truncate text-xs text-gray-500 dark:text-stone-400">{user.org}</span>
-                  {user.badge && (
-                    <span className="inline-flex items-center rounded-full bg-brand-500 px-1.5 py-px text-[10px] font-bold text-white leading-none">
-                      {user.badge}
+              <div className="flex min-w-0 flex-1 items-center gap-2 rounded-md p-1.5 group-data-[collapsible=icon]:p-0">
+                <div className="relative size-8 shrink-0">
+                  <Avatar className="size-8 rounded-full border-0">
+                    <AvatarImage src="/img/user.png" alt={user.name} />
+                    <AvatarFallback className="rounded-full bg-brand-500 text-xs font-semibold text-white">
+                      {user.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="absolute -right-px -bottom-px size-4 overflow-hidden rounded-full border-[0.8px] border-[#e8ebf2] bg-white dark:border-stone-600 dark:bg-stone-800">
+                    <Image
+                      src={user.orgLogo}
+                      alt=""
+                      width={16}
+                      height={16}
+                      className="size-full object-cover"
+                    />
+                  </div>
+                </div>
+                <div className="grid min-w-0 flex-1 text-left group-data-[collapsible=icon]:hidden">
+                  <span className="truncate text-sm leading-4 font-medium text-[#374151] dark:text-stone-200">
+                    {user.name}
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="truncate text-[10.5px] leading-[10.5px] font-normal text-[#687287] dark:text-stone-400">
+                      {user.org}
                     </span>
-                  )}
+                    {user.badge && (
+                      <span className="shrink-0 rounded-[3.25px] bg-[#d7e1ff] px-[3px] py-[1.5px] text-center text-[7.92px] leading-[8px] font-medium text-[#12204c] dark:bg-blue-950/60 dark:text-blue-200">
+                        {user.badge}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
-              <ChevronsUpDownIcon className="ml-auto size-4 text-gray-400 dark:text-stone-500" />
+              <ChevronsUpDownIcon className="size-4 shrink-0 text-gray-500 opacity-80 group-data-[collapsible=icon]:hidden dark:text-stone-400" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -81,8 +108,12 @@ export function NavUser({
                   className="shrink-0 rounded-lg"
                 />
                 <div className="grid flex-1 text-left leading-tight">
-                  <span className="truncate text-sm font-semibold text-gray-900 dark:text-stone-50">{user.org}</span>
-                  <span className="truncate text-xs text-gray-500 dark:text-stone-400">Business · 12 members</span>
+                  <span className="truncate text-sm font-semibold text-gray-900 dark:text-stone-50">
+                    {user.org}
+                  </span>
+                  <span className="truncate text-xs text-gray-500 dark:text-stone-400">
+                    Business · 12 members
+                  </span>
                 </div>
               </div>
             </DropdownMenuLabel>
@@ -91,7 +122,7 @@ export function NavUser({
               <DropdownMenuItem className="gap-2.5 rounded-lg px-2.5 py-2">
                 <span className="size-2.5 rounded-full bg-green-500" />
                 <span className="flex-1">Online</span>
-                <span className="rounded border border-green-200 bg-green-50 px-2 py-0.5 text-[11px] font-semibold text-green-700 dark:border-green-800 dark:bg-green-900/30 dark:text-green-300">
+                <span className="rounded border border-green-200 bg-green-50 px-2 py-0.5 text-[11px] font-semibold text-green-700 leading-none dark:border-green-800 dark:bg-green-900/30 dark:text-green-300">
                   ACTIVE
                 </span>
               </DropdownMenuItem>
@@ -126,4 +157,4 @@ export function NavUser({
       </SidebarMenuItem>
     </SidebarMenu>
   )
-}
+})

@@ -12,21 +12,21 @@ export function KPICard({ kpi }: KPICardProps) {
   const isUp = kpi.trendDirection === "up"
 
   return (
-    <div className="relative flex items-center justify-between rounded-xl bg-white px-4 py-3 dark:bg-stone-800">
+    <div className="relative flex min-h-[58px] items-center justify-between rounded-[12px] bg-white px-4 py-3 dark:bg-stone-800">
       <div className="flex flex-col gap-2">
-        <p className="text-xs font-medium text-gray-500 dark:text-stone-400 leading-5">
+        <p className="text-xs font-medium leading-5 text-[#5f5f5f] dark:text-stone-400">
           {kpi.label}
         </p>
-        <p className="text-base font-semibold text-gray-900 dark:text-stone-50 leading-5">
+        <p className="text-base font-semibold leading-5 text-black dark:text-stone-50">
           {kpi.value}
         </p>
       </div>
       <div className="flex flex-col items-end gap-1.5">
         <SparklineChart data={kpi.sparklineData} color={isUp ? "#3567FF" : "#DD524C"} />
         <span
-          className={`inline-flex items-center gap-0.5 rounded-full px-1 py-0.5 text-[10px] font-semibold leading-none ${
+          className={`inline-flex items-center gap-0.5 rounded-full px-[3px] py-0.5 text-[10px] font-semibold leading-[8px] ${
             isUp
-              ? "bg-green-50 text-green-800 dark:bg-green-900/30 dark:text-green-300"
+              ? "bg-[#f0fdf4] text-[#188540] dark:bg-green-900/30 dark:text-green-300"
               : "bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300"
           }`}
         >

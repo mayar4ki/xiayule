@@ -27,10 +27,19 @@ export interface PipelineStage {
   currency: string;
 }
 
+export interface ActivityHighlight {
+  text: string;
+  type: "person" | "stage" | "deal" | "task";
+  /** Figma uses #3567ff for some links; default / person+stage uses #476cdc unless type is deal|task */
+  tone?: "default" | "brand";
+}
+
 export interface ActivityEntry {
   id: string;
+  /** Bold lead-in (e.g. You, System, Nadia K.) — stripped from message when rendering body */
+  actor?: string;
   message: string;
-  highlights: { text: string; type: "person" | "stage" | "deal" }[];
+  highlights: ActivityHighlight[];
   timestamp: string;
   relativeTime: string;
   icon: "lead" | "deal" | "call" | "email" | "note" | "task" | "commission";

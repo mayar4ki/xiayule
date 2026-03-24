@@ -25,7 +25,7 @@ export function TaskItem({ task, onToggle }: TaskItemProps) {
   const priority = priorityStyles[task.priority]
 
   return (
-    <div className="flex items-start gap-3 border-b border-gray-100 px-5 py-3 dark:border-stone-700 last:border-b-0">
+    <div className="flex items-start gap-3 border-b border-[#f1f3f7] px-5 py-3 dark:border-stone-700 last:border-b-0">
       <button
         type="button"
         onClick={() => onToggle(task.id)}
@@ -47,10 +47,10 @@ export function TaskItem({ task, onToggle }: TaskItemProps) {
         <p
           className={`text-[13px] font-medium leading-[18px] ${
             task.completed
-              ? "text-gray-400 line-through dark:text-stone-500"
+              ? "text-[#a0a9bd] line-through dark:text-stone-500"
               : task.isOverdue
                 ? "text-red-600 dark:text-red-400"
-                : "text-gray-900 dark:text-stone-100"
+                : "text-[#091026] dark:text-stone-100"
           }`}
         >
           {task.title}
@@ -59,19 +59,19 @@ export function TaskItem({ task, onToggle }: TaskItemProps) {
           {task.isOverdue ? (
             <AlertTriangleIcon className="size-3 text-red-500" />
           ) : (
-            <ClockIcon className="size-3 text-gray-400 dark:text-stone-500" />
+            <ClockIcon className="size-3 text-[#a0a9bd] dark:text-stone-500" />
           )}
           <span
             className={`text-[11px] ${
               task.isOverdue
                 ? "text-red-500 dark:text-red-400"
-                : "text-gray-500 dark:text-stone-400"
+                : "text-[#a0a9bd] dark:text-stone-400"
             }`}
           >
             {task.dueLabel}
           </span>
-          <span className="text-[11px] text-gray-400 dark:text-stone-500">&middot;</span>
-          <span className="text-[11px] text-gray-500 dark:text-stone-400">
+          <span className="text-[11px] text-[#a0a9bd] dark:text-stone-500">&middot;</span>
+          <span className="text-[11px] text-[#a0a9bd] dark:text-stone-400">
             {typeLabels[task.type]}
           </span>
         </div>

@@ -1,16 +1,16 @@
 "use client"
 
 import { toast } from "sonner"
-import { useDashboard } from "~/hooks/use-dashboard"
 import {
-  DashboardHeader,
-  KPICards,
-  RevenueForecast,
-  PipelineSummary,
   ActivityFeed,
-  TasksPanel,
+  DashboardHeader,
   DashboardSkeleton,
+  KPICards,
+  PipelineSummary,
+  RevenueForecast,
+  TasksPanel,
 } from "~/components/pages/dashboard"
+import { useDashboard } from "~/hooks/use-dashboard"
 import type { Period } from "~/types/dashboard"
 
 const periodLabels: Record<Period, string> = {
@@ -62,7 +62,7 @@ export default function DashboardPage() {
 
   if (isError) {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center gap-4 p-6">
+      <div className="mx-auto flex w-full max-w-[1204px] flex-1 flex-col items-center justify-center gap-4 px-[30px] py-10">
         <p className="text-sm text-gray-500">Failed to load dashboard data.</p>
         <button
           type="button"
@@ -86,14 +86,13 @@ export default function DashboardPage() {
   if (!data) return null
 
   return (
-    <div className="flex flex-1 flex-col gap-6 p-6 pt-6 overflow-auto">
+    <div className="border rounded-xl flex w-full max-w-[1204px] flex-1 flex-col gap-[26px] overflow-auto px-[30px] pb-10 pt-[25px]">
       <DashboardHeader period={period} onPeriodChange={handlePeriodChange} />
 
       <KPICards kpis={data.kpis} />
 
-      <div className="flex flex-col gap-6 lg:flex-row">
-        {/* Left column: Revenue + Pipeline */}
-        <div className="flex min-w-0 flex-1 flex-col gap-6">
+      <div className="flex flex-col gap-[26px] lg:flex-row lg:items-start">
+        <div className="flex min-w-0 flex-1 flex-col gap-[26px] lg:max-w-[718px]">
           <RevenueForecast
             total={data.revenue.total}
             trend={data.revenue.trend}
@@ -107,8 +106,7 @@ export default function DashboardPage() {
           />
         </div>
 
-        {/* Right column: Activity Feed + Tasks */}
-        <div className="flex w-full flex-col gap-6 lg:w-[400px] lg:shrink-0">
+        <div className="flex w-full flex-col gap-[26px] lg:w-[400px] lg:shrink-0">
           <ActivityFeed groups={data.activities.groups} />
           {tasks && (
             <TasksPanel

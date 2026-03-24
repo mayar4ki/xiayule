@@ -21,19 +21,22 @@ export function PipelineSummary({ totalDeals, totalStages, totalValue, stages }:
   const maxCount = Math.max(...stages.map((s) => s.count))
 
   return (
-    <div className="rounded-[14px] border border-gray-200 bg-white dark:border-stone-700 dark:bg-stone-800">
-      <div className="flex flex-col gap-1.5 px-5 pt-4 pb-4">
+    <div className="rounded-[14px] border border-[#e1e4ed] bg-white dark:border-stone-600 dark:bg-stone-800">
+      <div className="flex flex-col gap-1 px-5 pt-5 pb-4">
         <div className="flex items-center justify-between">
-          <h3 className="font-heading text-base font-bold text-gray-900 dark:text-stone-50">
+          <h3 className="font-heading text-sm font-normal leading-5 text-[#686868] dark:text-stone-300">
             Pipeline Summary
           </h3>
-          <button type="button" className="flex items-center gap-0.5 text-xs font-semibold text-brand-500 hover:text-brand-600">
+          <button
+            type="button"
+            className="font-heading flex items-center gap-0.5 text-xs font-semibold text-[#3567ff] hover:text-brand-600"
+          >
             Details
-            <ArrowUpRightIcon className="size-3" />
+            <ArrowUpRightIcon className="size-3" strokeWidth={2} />
           </button>
         </div>
-        <p className="text-xs text-gray-500 dark:text-stone-400">
-          {totalDeals} deals across {totalStages} stages &middot; {totalValue} total value
+        <p className="text-xs leading-[18px] text-[#6b7280] dark:text-stone-400">
+          {totalDeals} deals across {totalStages} stages · {totalValue} total value
         </p>
       </div>
 
@@ -42,45 +45,47 @@ export function PipelineSummary({ totalDeals, totalStages, totalValue, stages }:
           const pct = maxCount > 0 ? (stage.count / maxCount) * 100 : 0
           const isDarkBar = i < 4
           return (
-            <div key={stage.stage} className="flex items-center gap-0 h-[30px]">
-              <div className="w-[88px] shrink-0 text-right pr-3">
-                <span className="text-xs font-medium text-gray-600 dark:text-stone-300">
+            <div key={stage.stage} className="flex h-[30px] items-center gap-0">
+              <div className="w-[88px] shrink-0 pr-3 text-right">
+                <span className="text-xs font-medium leading-[18px] text-[#4b5563] dark:text-stone-300">
                   {stage.stage}
                 </span>
               </div>
-              <div className="relative flex-1 h-[30px] overflow-hidden rounded-lg">
+              <div className="relative h-[30px] flex-1 overflow-hidden rounded-lg bg-[#f1f3f7] dark:bg-stone-900">
                 <motion.div
                   initial={{ width: 0 }}
-                  animate={{ width: `${Math.max(pct, 8)}%` }}
+                  animate={{ width: `${Math.max(pct, stage.count > 0 ? 12 : 0)}%` }}
                   transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
-                  className={`h-full rounded-lg flex items-center pl-1 ${
+                  className={`flex h-full items-center rounded-lg pl-1 ${
                     isDarkBar
-                      ? "bg-linear-to-r from-brand-900 via-[#314174] to-[#3F5188]"
-                      : "bg-linear-to-r from-green-100 to-blue-100 dark:from-green-900/30 dark:to-blue-900/30"
+                      ? "bg-[#314174]"
+                      : "bg-gradient-to-r from-emerald-100/90 to-sky-100/80 dark:from-emerald-900/40 dark:to-sky-900/30"
                   }`}
                 >
-                  <div
-                    className={`flex items-center gap-2 rounded-lg px-1.5 py-0.5 ${
-                      isDarkBar ? "bg-white/20" : ""
-                    }`}
-                  >
-                    <span
-                      className={`text-xs font-bold ${
-                        isDarkBar ? "text-white" : "text-gray-800 dark:text-stone-200"
+                  {stage.count > 0 && (
+                    <div
+                      className={`flex items-center gap-2 rounded-md px-1.5 py-0.5 ${
+                        isDarkBar ? "bg-white/15" : "bg-white/60 dark:bg-stone-800/40"
                       }`}
                     >
-                      {stage.count}
-                    </span>
-                    {stage.value > 0 && (
                       <span
-                        className={`text-[11px] font-medium ${
-                          isDarkBar ? "text-white/70" : "text-gray-600/70 dark:text-stone-400"
+                        className={`text-[11px] font-bold leading-none ${
+                          isDarkBar ? "text-white" : "text-[#1f2937] dark:text-stone-200"
                         }`}
                       >
-                        {formatValue(stage.value, stage.currency)}
+                        {stage.count}
                       </span>
-                    )}
-                  </div>
+                      {stage.value > 0 && (
+                        <span
+                          className={`text-[11px] font-medium leading-none ${
+                            isDarkBar ? "text-white/80" : "text-gray-600 dark:text-stone-400"
+                          }`}
+                        >
+                          {formatValue(stage.value, stage.currency)}
+                        </span>
+                      )}
+                    </div>
+                  )}
                 </motion.div>
               </div>
             </div>

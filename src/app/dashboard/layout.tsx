@@ -10,7 +10,7 @@ import { Button } from "~/components/ui/button"
 import {
   SidebarInset,
   SidebarProvider,
-  SidebarTrigger,
+  SidebarTrigger
 } from "~/components/ui/sidebar"
 import { TooltipProvider } from "~/components/ui/tooltip"
 import { useIsMobile } from "~/hooks/use-mobile"
@@ -26,13 +26,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <SidebarProvider>
             <AppSidebar />
             <SidebarInset>
-              {isMobile && (
-                <Button variant="ghost" size="icon" className="ml-2 mt-2">
-                  <SidebarTrigger>
-                    <MenuIcon />
-                  </SidebarTrigger>
-                </Button>
-              )}
+              <header className="flex h-19
+            shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+                <div className="flex items-center gap-2 px-4">
+                  {isMobile && (
+                    <Button variant="ghost" size="icon" className="ml-2 mt-2">
+                      <SidebarTrigger>
+                        <MenuIcon />
+                      </SidebarTrigger>
+                    </Button>
+                  )}
+                </div>
+              </header>
               {children}
             </SidebarInset>
           </SidebarProvider>

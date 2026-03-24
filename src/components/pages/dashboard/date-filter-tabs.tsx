@@ -33,7 +33,7 @@ export function DateFilterTabs({ period, onPeriodChange }: DateFilterTabsProps) 
             {isActive && (
               <motion.div
                 layoutId="active-tab"
-                className="absolute inset-0 rounded-md bg-white shadow-sm dark:bg-stone-700"
+                className="absolute inset-0 rounded-md bg-white shadow-[0px_0px_2px_0px_rgba(0,0,0,0.06),0px_1px_3px_0px_rgba(0,0,0,0.1)] dark:bg-stone-700"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
               />
             )}

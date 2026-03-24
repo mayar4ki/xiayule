@@ -7,19 +7,77 @@ import {
   ListChecksIcon,
   BadgeDollarSignIcon,
 } from "lucide-react"
-import type { ActivityEntry as ActivityEntryType } from "~/types/dashboard"
+import type {
+  ActivityEntry as ActivityEntryType,
+  ActivityHighlight,
+} from "~/types/dashboard"
 
 const iconConfig: Record<
   ActivityEntryType["icon"],
-  { icon: React.ElementType; bg: string; color: string }
+  { icon: React.ElementType; bg: string }
 > = {
-  lead: { icon: UsersIcon, bg: "bg-blue-50 dark:bg-blue-900/30", color: "text-brand-500" },
-  deal: { icon: HandshakeIcon, bg: "bg-purple-50 dark:bg-purple-900/30", color: "text-purple-500" },
-  call: { icon: PhoneIcon, bg: "bg-green-50 dark:bg-green-900/30", color: "text-green-600" },
-  email: { icon: MailIcon, bg: "bg-blue-50 dark:bg-blue-900/30", color: "text-brand-500" },
-  note: { icon: StickyNoteIcon, bg: "bg-orange-50 dark:bg-orange-900/30", color: "text-orange-500" },
-  task: { icon: ListChecksIcon, bg: "bg-gray-100 dark:bg-stone-700", color: "text-gray-600 dark:text-stone-300" },
-  commission: { icon: BadgeDollarSignIcon, bg: "bg-orange-50 dark:bg-orange-900/30", color: "text-orange-600" },
+  lead: { icon: UsersIcon, bg: "bg-[#fafafa]" },
+  deal: { icon: HandshakeIcon, bg: "bg-[#fafafa]" },
+  call: { icon: PhoneIcon, bg: "bg-[#fafafa]" },
+  email: { icon: MailIcon, bg: "bg-[#f7f9fc]" },
+  note: { icon: StickyNoteIcon, bg: "bg-[#eaf4ff]" },
+  task: { icon: ListChecksIcon, bg: "bg-[#f0fdf4]" },
+  commission: { icon: BadgeDollarSignIcon, bg: "bg-[#fff8ed]" },
+}
+
+function highlightClass(h: ActivityHighlight) {
+  if (h.tone === "brand" || h.type === "deal" || h.type === "task") {
+    return "font-semibold text-[#3567ff]"
+  }
+  return "font-semibold text-[#476cdc]"
+}
+
+function stripActor(message: string, actor?: string) {
+  if (!actor || !message.startsWith(actor)) {
+    return { actor: undefined as string | undefined, body: message }
+  }
+  const rest = message.slice(actor.length)
+  const body = rest.replace(/^[\s.]+/, "")
+  return { actor, body }
+}
+
+function renderBody(body: string, highlights: ActivityHighlight[]) {
+  if (!highlights.length) {
+    return <span className="font-normal">{body}</span>
+  }
+
+  const parts: React.ReactNode[] = []
+  let remaining = body
+  let key = 0
+
+  for (const hl of highlights) {
+    const idx = remaining.indexOf(hl.text)
+    if (idx === -1) continue
+
+    if (idx > 0) {
+      parts.push(
+        <span key={key++} className="font-normal">
+          {remaining.slice(0, idx)}
+        </span>
+      )
+    }
+    parts.push(
+      <span key={key++} className={highlightClass(hl)}>
+        {hl.text}
+      </span>
+    )
+    remaining = remaining.slice(idx + hl.text.length)
+  }
+
+  if (remaining) {
+    parts.push(
+      <span key={key++} className="font-normal">
+        {remaining}
+      </span>
+    )
+  }
+
+  return <>{parts}</>
 }
 
 interface ActivityEntryProps {
@@ -29,54 +87,35 @@ interface ActivityEntryProps {
 export function ActivityEntry({ entry }: ActivityEntryProps) {
   const config = iconConfig[entry.icon] ?? iconConfig.task
   const Icon = config.icon
-
-  const renderedMessage = renderHighlighted(entry.message, entry.highlights)
+  const { actor, body } = stripActor(entry.message, entry.actor)
+  const bodyContent = renderBody(body, entry.highlights)
 
   return (
-    <div className="flex gap-3 py-3">
-      <div className={`flex size-7 shrink-0 items-center justify-center rounded-full ${config.bg}`}>
-        <Icon className={`size-3.5 ${config.color}`} />
+    <div className="relative min-h-[62.5px] pt-3">
+      <div
+        className={`absolute left-5 top-3 z-1 flex size-[28px] items-center justify-center rounded-full border border-[#e1e4ed] shadow-[0px_0px_0px_0px_white] dark:border-stone-600 ${config.bg} dark:ring-1 dark:ring-stone-600`}
+      >
+        <Icon
+          className="size-[13px] text-[#3567ff] dark:text-[#5b82ff]"
+          strokeWidth={2}
+          aria-hidden
+        />
       </div>
-      <div className="flex min-w-0 flex-1 flex-col gap-1">
-        <p className="text-xs leading-[18px] text-gray-900 dark:text-stone-100">
-          {renderedMessage}
+      <div className="relative z-1 pb-3 pl-[60px] pr-0">
+        <p className="text-xs leading-[18px] text-[#091026] dark:text-stone-100">
+          {actor ? (
+            <>
+              <span className="font-semibold">{actor}</span>{" "}
+              {bodyContent}
+            </>
+          ) : (
+            bodyContent
+          )}
         </p>
-        <p className="text-[11px] text-gray-400 dark:text-stone-500">
+        <p className="mt-0.5 text-[11px] font-normal leading-[16.5px] text-[#a0a9bd] dark:text-stone-500">
           {entry.relativeTime}
         </p>
       </div>
     </div>
   )
-}
-
-function renderHighlighted(
-  message: string,
-  highlights: ActivityEntryType["highlights"]
-) {
-  if (!highlights.length) return message
-
-  const parts: React.ReactNode[] = []
-  let remaining = message
-  let key = 0
-
-  for (const hl of highlights) {
-    const idx = remaining.indexOf(hl.text)
-    if (idx === -1) continue
-
-    if (idx > 0) {
-      parts.push(<span key={key++}>{remaining.slice(0, idx)}</span>)
-    }
-    parts.push(
-      <span key={key++} className="font-semibold text-brand-500">
-        {hl.text}
-      </span>
-    )
-    remaining = remaining.slice(idx + hl.text.length)
-  }
-
-  if (remaining) {
-    parts.push(<span key={key++}>{remaining}</span>)
-  }
-
-  return <>{parts}</>
 }

@@ -4,8 +4,96 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* =============================================================================
+ * FIGMA SEMANTIC TOKENS (mode-aware)
+ * Names match spec: bg.default → --bg-default, brand.bg.emphasis → --brand-bg-emphasis
+ * Light: gray-* / blue-* (= brand) / green / orange / red. Dark: black + stone-* + same accents.
+ * Values use var(--color-*) from @theme below (same hex as design primitives).
+ * ============================================================================= */
+:root {
+  /* bg.* */
+  --bg-emphasis: var(--color-gray-200);
+  --bg-default: #ffffff;
+  --bg-subtle: var(--color-gray-100);
+  --bg-muted: var(--color-gray-50);
+  --bg-inverted: var(--color-gray-900);
+
+  --bg-info: var(--color-blue-100);
+  --bg-success: var(--color-green-100);
+  --bg-attention: var(--color-orange-100);
+  --bg-error: var(--color-red-100);
+
+  /* border.* */
+  --border-emphasis: var(--color-gray-400);
+  --border-default: var(--color-gray-300);
+  --border-subtle: var(--color-gray-200);
+  --border-muted: var(--color-gray-100);
+
+  /* content.* */
+  --content-emphasis: var(--color-gray-900);
+  --content-default: var(--color-gray-700);
+  --content-subtle: var(--color-gray-500);
+  --content-muted: var(--color-gray-400);
+  --content-inverted: #ffffff;
+
+  --content-info: var(--color-blue-900);
+  --content-success: var(--color-green-900);
+  --content-attention: var(--color-orange-900);
+  --content-error: var(--color-red-900);
+
+  /* brand.bg.* */
+  --brand-bg-emphasis: var(--color-brand-900);
+  --brand-bg-default: var(--color-brand-500);
+  --brand-bg-subtle: var(--color-brand-100);
+
+  --container-7xl: 70rem;
+}
+
+.dark {
+  /* bg.* */
+  --bg-emphasis: var(--color-stone-700);
+  --bg-default: #1a1a1a;
+  --bg-subtle: var(--color-stone-800);
+  --bg-muted: var(--color-stone-900);
+  --bg-inverted: var(--color-stone-50);
+
+  --bg-info: var(--color-blue-900);
+  --bg-success: var(--color-green-900);
+  --bg-attention: var(--color-orange-900);
+  --bg-error: var(--color-red-900);
+
+  /* border.* */
+  --border-emphasis: var(--color-stone-500);
+  --border-default: var(--color-stone-600);
+  --border-subtle: var(--color-stone-700);
+  --border-muted: var(--color-stone-800);
+
+  /* content.* */
+  --content-emphasis: var(--color-stone-50);
+  --content-default: var(--color-stone-300);
+  --content-subtle: var(--color-stone-400);
+  --content-muted: var(--color-stone-600);
+  --content-inverted: #1a1a1a;
+  
+  --content-info: var(--color-blue-100);
+  --content-success: var(--color-green-100);
+  --content-attention: var(--color-orange-100);
+  --content-error: var(--color-red-100);
+
+  /* brand.bg.* */
+  --brand-bg-emphasis: var(--color-brand-100);
+  --brand-bg-default: var(--color-brand-500);
+  --brand-bg-subtle: var(--color-brand-900);
+}
+
+/* -----------------------------------------------------------------------------
+ * LEGACY — shadcn semantic vars + @theme (swap components to Figma tokens, then
+ * delete this whole block and wire @theme to --bg-default / --content-* / …)
+ * ----------------------------------------------------------------------------- */
+
 @theme inline {
-  --color-background: var(--background);
+  --color-background: var(--bg-default); /* new */
+
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-mono-fallback, ui-monospace, monospace);
@@ -13,12 +101,12 @@
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent-foreground: var(--color-brand-700); /* new */
   --color-sidebar-accent: var(--sidebar-accent);
   --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
+  --color-sidebar: var(--bg-default); /* new */
 
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
@@ -51,172 +139,176 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
-  --color-brand-50: #EBF0FF;
-  --color-brand-100: #D7E1FF;
-  --color-brand-200: #AEC2FF;
-  --color-brand-300: #86A4FF;
-  --color-brand-400: #5D85FF;
-  --color-brand-500: #3567FF;
-  --color-brand-600: #2A53CE;
-  --color-brand-700: #203F9E;
-  --color-brand-800: #152B6D;
-  --color-brand-900: #12204C;
+  --color-brand-50: #ebf0ff;
+  --color-brand-100: #d7e1ff;
+  --color-brand-200: #aec2ff;
+  --color-brand-300: #86a4ff;
+  --color-brand-400: #5d85ff;
+  --color-brand-500: #3567ff;
+  --color-brand-600: #2a53ce;
+  --color-brand-700: #203f9e;
+  --color-brand-800: #152b6d;
+  --color-brand-900: #12204c;
 
-  --color-gray-50: #F9FAFB;
-  --color-gray-100: #F3F4F6;
-  --color-gray-200: #E5E7EB;
-  --color-gray-300: #D1D5DB;
-  --color-gray-400: #9CA3AF;
-  --color-gray-500: #6B7280;
-  --color-gray-600: #4B5563;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
   --color-gray-700: #374151;
-  --color-gray-800: #1F2937;
+  --color-gray-800: #1f2937;
   --color-gray-900: #101010;
 
-  --color-stone-50: #FCFCFD;
-  --color-stone-100: #F3F4F6;
-  --color-stone-200: #E8E8E8;
-  --color-stone-300: #D6D6D6;
-  --color-stone-400: #A5A5A5;
+  --color-stone-50: #fcfcfd;
+  --color-stone-100: #f3f4f6;
+  --color-stone-200: #e8e8e8;
+  --color-stone-300: #d6d6d6;
+  --color-stone-400: #a5a5a5;
   --color-stone-500: #757575;
   --color-stone-600: #575757;
   --color-stone-700: #404040;
-  --color-stone-800: #2E2E2E;
-  --color-stone-900: #1F1F1F;
+  --color-stone-800: #2e2e2e;
+  --color-stone-900: #1f1f1f;
 
-  --color-red-50: #FCF2F2;
-  --color-red-100: #F9E3E2;
-  --color-red-200: #F6CCCB;
-  --color-red-300: #F0A9A7;
-  --color-red-400: #E77975;
-  --color-red-500: #DD524C;
-  --color-red-600: #CA3A31;
-  --color-red-700: #AA2E26;
-  --color-red-800: #8C2822;
+  --color-red-50: #fcf2f2;
+  --color-red-100: #f9e3e2;
+  --color-red-200: #f6cccb;
+  --color-red-300: #f0a9a7;
+  --color-red-400: #e77975;
+  --color-red-500: #dd524c;
+  --color-red-600: #ca3a31;
+  --color-red-700: #aa2e26;
+  --color-red-800: #8c2822;
   --color-red-900: #752522;
 
-  --color-orange-50: #FEF7EE;
-  --color-orange-100: #FCEED8;
-  --color-orange-200: #F8D8B0;
-  --color-orange-300: #F3BD7F;
-  --color-orange-400: #ED974F;
-  --color-orange-500: #E87B35;
-  --color-orange-600: #D9622B;
-  --color-orange-700: #B34A22;
-  --color-orange-800: #8E3B1F;
-  --color-orange-900: #73321B;
+  --color-orange-50: #fef7ee;
+  --color-orange-100: #fceed8;
+  --color-orange-200: #f8d8b0;
+  --color-orange-300: #f3bd7f;
+  --color-orange-400: #ed974f;
+  --color-orange-500: #e87b35;
+  --color-orange-600: #d9622b;
+  --color-orange-700: #b34a22;
+  --color-orange-800: #8e3b1f;
+  --color-orange-900: #73321b;
 
-  --color-green-50: #EBFCEE;
-  --color-green-100: #E2FBE8;
-  --color-green-200: #C7F5D3;
-  --color-green-300: #A0ECB1;
-  --color-green-400: #77DB89;
-  --color-green-500: #5EC269;
-  --color-green-600: #4CA154;
-  --color-green-700: #3C7E44;
+  --color-green-50: #ebfcee;
+  --color-green-100: #e2fbe8;
+  --color-green-200: #c7f5d3;
+  --color-green-300: #a0ecb1;
+  --color-green-400: #77db89;
+  --color-green-500: #5ec269;
+  --color-green-600: #4ca154;
+  --color-green-700: #3c7e44;
   --color-green-800: #306339;
   --color-green-900: #285231;
 
-  --color-purple-50: #EBDFF4;
-  --color-purple-100: #DDCAEC;
-  --color-purple-200: #C0A0DB;
-  --color-purple-300: #A475CA;
-  --color-purple-400: #874BB9;
-  --color-purple-500: #6B21A8;
-  --color-purple-600: #561A86;
+  --color-purple-50: #ebdff4;
+  --color-purple-100: #ddcaec;
+  --color-purple-200: #c0a0db;
+  --color-purple-300: #a475ca;
+  --color-purple-400: #874bb9;
+  --color-purple-500: #6b21a8;
+  --color-purple-600: #561a86;
   --color-purple-700: #401465;
-  --color-purple-800: #2B0D43;
-  --color-purple-900: #200A32;
+  --color-purple-800: #2b0d43;
+  --color-purple-900: #200a32;
 
-  --color-blue-50: #EBF0FF;
-  --color-blue-100: #D7E1FF;
-  --color-blue-200: #AEC2FF;
-  --color-blue-300: #86A4FF;
-  --color-blue-400: #5D85FF;
-  --color-blue-500: #3567FF;
-  --color-blue-600: #2A53CE;
-  --color-blue-700: #203F9E;
-  --color-blue-800: #152B6D;
-  --color-blue-900: #12204C;
+  --color-blue-50: #ebf0ff;
+  --color-blue-100: #d7e1ff;
+  --color-blue-200: #aec2ff;
+  --color-blue-300: #86a4ff;
+  --color-blue-400: #5d85ff;
+  --color-blue-500: #3567ff;
+  --color-blue-600: #2a53ce;
+  --color-blue-700: #203f9e;
+  --color-blue-800: #152b6d;
+  --color-blue-900: #12204c;
 
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
-  --shadow-modal: 0 8px 24px -4px rgba(0, 0, 0, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
-  --shadow-dropdown: 0 4px 12px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-sm:
+    0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+  --shadow-modal:
+    0 8px 24px -4px rgba(0, 0, 0, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
+  --shadow-dropdown:
+    0 4px 12px -2px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 :root {
-  --background: #FFFFFF;
+  --background: #ffffff;
   --foreground: #101010;
-  --card: #FFFFFF;
+  --card: #ffffff;
   --card-foreground: #101010;
-  --popover: #FFFFFF;
+  --popover: #ffffff;
   --popover-foreground: #101010;
-  --primary: #3567FF;
-  --primary-foreground: #FFFFFF;
-  --secondary: #F3F4F6;
+  --primary: #3567ff;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
   --secondary-foreground: #101010;
-  --muted: #F9FAFB;
-  --muted-foreground: #6B7280;
-  --accent: #F3F4F6;
+  --muted: #f9fafb;
+  --muted-foreground: #6b7280;
+  --accent: #f3f4f6;
   --accent-foreground: #101010;
-  --destructive: #DD524C;
-  --border: #E5E7EB;
-  --input: #E5E7EB;
-  --ring: #3567FF;
+  --destructive: #dd524c;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #3567ff;
 
-  --chart-1: #3567FF;
-  --chart-2: #2A53CE;
-  --chart-3: #5EC269;
-  --chart-4: #E87B35;
-  --chart-5: #DD524C;
+  --chart-1: #3567ff;
+  --chart-2: #2a53ce;
+  --chart-3: #5ec269;
+  --chart-4: #e87b35;
+  --chart-5: #dd524c;
 
   --radius: 0.5rem;
 
-  --sidebar: #FFFFFF;
+  /* Figma Sidebar/Main (2014:5586): muted canvas, soft rail */
+  --sidebar: #f9fafb;
   --sidebar-foreground: #374151;
-  --sidebar-primary: #3567FF;
-  --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #EBF0FF;
-  --sidebar-accent-foreground: #3567FF;
-  --sidebar-border: #F3F4F6;
-  --sidebar-ring: #3567FF;
+  --sidebar-primary: #3567ff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ebf0ff;
+  --sidebar-accent-foreground: #203f9e;
+  --sidebar-border: #e8ebf2;
+  --sidebar-ring: #3567ff;
 }
 
 .dark {
-  --background: #1F1F1F;
-  --foreground: #FCFCFD;
-  --card: #2E2E2E;
-  --card-foreground: #FCFCFD;
-  --popover: #2E2E2E;
-  --popover-foreground: #FCFCFD;
-  --primary: #3567FF;
-  --primary-foreground: #FFFFFF;
+  --background: #1f1f1f;
+  --foreground: #fcfcfd;
+  --card: #2e2e2e;
+  --card-foreground: #fcfcfd;
+  --popover: #2e2e2e;
+  --popover-foreground: #fcfcfd;
+  --primary: #3567ff;
+  --primary-foreground: #ffffff;
   --secondary: #404040;
-  --secondary-foreground: #FCFCFD;
-  --muted: #2E2E2E;
-  --muted-foreground: #A5A5A5;
+  --secondary-foreground: #fcfcfd;
+  --muted: #2e2e2e;
+  --muted-foreground: #a5a5a5;
   --accent: #404040;
-  --accent-foreground: #FCFCFD;
-  --destructive: #DD524C;
+  --accent-foreground: #fcfcfd;
+  --destructive: #dd524c;
   --border: #575757;
   --input: #575757;
-  --ring: #3567FF;
+  --ring: #3567ff;
 
-  --chart-1: #3567FF;
-  --chart-2: #5D85FF;
-  --chart-3: #5EC269;
-  --chart-4: #E87B35;
-  --chart-5: #DD524C;
+  --chart-1: #3567ff;
+  --chart-2: #5d85ff;
+  --chart-3: #5ec269;
+  --chart-4: #e87b35;
+  --chart-5: #dd524c;
 
-  --sidebar: #1F1F1F;
-  --sidebar-foreground: #D6D6D6;
-  --sidebar-primary: #3567FF;
-  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar: #1f1f1f;
+  --sidebar-foreground: #d6d6d6;
+  --sidebar-primary: #3567ff;
+  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #404040;
-  --sidebar-accent-foreground: #D7E1FF;
+  --sidebar-accent-foreground: #d7e1ff;
   --sidebar-border: #404040;
-  --sidebar-ring: #3567FF;
+  --sidebar-ring: #3567ff;
 }
 
 @layer base {

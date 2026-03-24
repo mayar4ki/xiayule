@@ -2,9 +2,10 @@
 
 import * as React from "react"
 
-import { ExpandedNav } from "~/components/layout/expanded-nav"
 import { BasicNav } from "~/components/layout/basic-nav"
+import { ExpandedNav } from "~/components/layout/expanded-nav"
 import { NavUser } from "~/components/layout/nav-user"
+import { SearchForm } from "~/components/layout/search-form"
 import {
   Sidebar,
   SidebarContent,
@@ -13,20 +14,19 @@ import {
   SidebarRail,
 } from "~/components/ui/sidebar"
 import {
-  LayoutDashboardIcon,
-  InboxIcon,
-  UsersIcon,
-  HandshakeIcon,
-  ContactIcon,
-  ListChecksIcon,
-  CalendarIcon,
-  BuildingIcon,
-  MegaphoneIcon,
-  BarChart3Icon,
-  Settings2Icon,
-  UsersRoundIcon,
-} from "lucide-react"
-import { SearchForm } from "~/components/layout/search-form"
+  FigmaIconBuilding,
+  FigmaIconCalendar,
+  FigmaIconCircleCheck,
+  FigmaIconGear,
+  FigmaIconInboxSpeech,
+  FigmaIconKanban,
+  FigmaIconLayoutColumns,
+  FigmaIconLayoutGrid,
+  FigmaIconPhone,
+  FigmaIconSettingsKnobs,
+  FigmaIconUserBadge,
+  FigmaIconUsersGroup,
+} from "../icons/figma"
 
 const data = {
   user: {
@@ -41,7 +41,7 @@ const data = {
       {
         name: "Dashboard",
         url: "/dashboard",
-        icon: <LayoutDashboardIcon className="size-4" />,
+        icon: <FigmaIconLayoutGrid className="size-4 shrink-0" />,
       },
     ],
   },
@@ -51,32 +51,37 @@ const data = {
       {
         name: "Inbox",
         url: "/dashboard/inbox",
-        icon: <InboxIcon className="size-4" />,
+        icon: <FigmaIconInboxSpeech className="size-4 shrink-0" />,
+        disabled: true,
       },
       {
         name: "Leads",
         url: "/dashboard/leads",
-        icon: <UsersIcon className="size-4" />,
+        icon: <FigmaIconUserBadge className="size-4 shrink-0" />,
       },
       {
         name: "Deals",
         url: "/dashboard/deals",
-        icon: <HandshakeIcon className="size-4" />,
+        icon: <FigmaIconCircleCheck className="size-4 shrink-0" />,
+        disabled: true,
       },
       {
         name: "Contacts",
         url: "/dashboard/contacts",
-        icon: <ContactIcon className="size-4" />,
+        icon: <FigmaIconPhone className="size-4 shrink-0" />,
+        disabled: true,
       },
       {
         name: "Tasks",
         url: "/dashboard/tasks",
-        icon: <ListChecksIcon className="size-4" />,
+        icon: <FigmaIconKanban className="size-4 shrink-0" />,
+        disabled: true,
       },
       {
         name: "Calendar",
         url: "/dashboard/calendar",
-        icon: <CalendarIcon className="size-4" />,
+        icon: <FigmaIconCalendar className="size-4 shrink-0" />,
+        disabled: true,
       },
     ],
   },
@@ -86,7 +91,7 @@ const data = {
       {
         title: "Properties",
         url: "#",
-        icon: <BuildingIcon className="size-4" />,
+        icon: <FigmaIconBuilding className="size-4 shrink-0" />,
         isActive: false,
         items: [
           { title: "All Properties", url: "#" },
@@ -96,7 +101,7 @@ const data = {
       {
         title: "Marketing",
         url: "#",
-        icon: <MegaphoneIcon className="size-4" />,
+        icon: <FigmaIconSettingsKnobs className="size-4 shrink-0" />,
         isActive: false,
         items: [
           { title: "Campaigns", url: "#" },
@@ -106,7 +111,7 @@ const data = {
       {
         title: "Reports",
         url: "#",
-        icon: <BarChart3Icon className="size-4" />,
+        icon: <FigmaIconLayoutColumns className="size-4 shrink-0" />,
         isActive: false,
         items: [
           { title: "Sales Report", url: "#" },
@@ -120,12 +125,13 @@ const data = {
       {
         name: "Team",
         url: "/dashboard/team",
-        icon: <UsersRoundIcon className="size-4" />,
+        icon: <FigmaIconUsersGroup className="size-4 shrink-0" />,
+        disabled: true,
       },
       {
         name: "Settings",
         url: "/dashboard/settings",
-        icon: <Settings2Icon className="size-4" />,
+        icon: <FigmaIconGear className="size-4 shrink-0" />,
       },
     ],
   },
@@ -133,17 +139,17 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" className="border-r border-sidebar-border" {...props}>
-      <SidebarHeader>
+    <Sidebar collapsible="icon" className="border-none" {...props}>
+      <SidebarHeader className="p-0 px-3 pt-4 pb-3">
         <NavUser user={data.user} />
       </SidebarHeader>
       <SearchForm />
-      <SidebarContent>
+      <SidebarContent className="gap-3 px-3">
         <BasicNav items={data.dashboard.items} />
         <BasicNav items={data.crm.items} label={data.crm.label} />
         <ExpandedNav items={data.workspace.items} label={data.workspace.label} />
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="p-0 px-3 pt-1 pb-3">
         <BasicNav items={data.footer.items} />
       </SidebarFooter>
       <SidebarRail />
