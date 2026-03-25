@@ -19,7 +19,7 @@ import {
 import { cn } from "~/lib/utils"
 
 const triggerClass =
-  "h-auto min-h-0 rounded-md py-2 pr-2 pl-2 text-sm font-medium leading-4 gap-2 text-[#374151] hover:bg-black/[0.04] hover:text-[#374151] dark:text-stone-200 dark:hover:bg-white/[0.06] dark:hover:text-stone-200"
+  "h-auto min-h-0 rounded-md py-2 pr-2 pl-2 text-sm font-medium leading-4 gap-2 text-(--content-default) hover:bg-(--content-emphasis)/4 hover:text-(--content-default) dark:text-stone-200 dark:hover:bg-white/[0.06] dark:hover:text-stone-200"
 
 export function ExpandedNav({
   items,
@@ -72,7 +72,7 @@ export function ExpandedNav({
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton
                         asChild
-                        className="text-[13px] text-[#374151] dark:text-stone-300"
+                        className="text-[13px] text-(--content-default) dark:text-stone-300"
                       >
                         <a href={subItem.url}>
                           <span>{subItem.title}</span>

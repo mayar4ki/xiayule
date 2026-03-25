@@ -63,7 +63,7 @@ export const NavUser = memo(({
                         .join("")}
                     </AvatarFallback>
                   </Avatar>
-                  <div className="absolute -right-px -bottom-px size-4 overflow-hidden rounded-full border-[0.8px] border-[#e8ebf2] bg-white dark:border-stone-600 dark:bg-stone-800">
+                  <div className="absolute -right-px -bottom-px size-4 overflow-hidden rounded-full border-[0.8px] border-(--border-subtle) bg-(--bg-default) dark:border-stone-600 dark:bg-stone-800">
                     <Image
                       src={user.orgLogo}
                       alt=""
@@ -74,15 +74,15 @@ export const NavUser = memo(({
                   </div>
                 </div>
                 <div className="grid min-w-0 flex-1 text-left group-data-[collapsible=icon]:hidden">
-                  <span className="truncate text-sm leading-4 font-medium text-[#374151] dark:text-stone-200">
+                  <span className="truncate text-sm leading-4 font-medium text-(--content-default) dark:text-stone-200">
                     {user.name}
                   </span>
                   <div className="flex items-center gap-1.5">
-                    <span className="truncate text-[10.5px] leading-[10.5px] font-normal text-[#687287] dark:text-stone-400">
+                    <span className="truncate text-[10.5px] leading-[10.5px] font-normal text-(--content-subtle) dark:text-stone-400">
                       {user.org}
                     </span>
                     {user.badge && (
-                      <span className="shrink-0 rounded-[3.25px] bg-[#d7e1ff] px-[3px] py-[1.5px] text-center text-[7.92px] leading-[8px] font-medium text-[#12204c] dark:bg-blue-950/60 dark:text-blue-200">
+                      <span className="shrink-0 rounded-[3.25px] bg-(--brand-bg-subtle) px-[3px] py-[1.5px] text-center text-[7.92px] leading-[8px] font-medium text-(--brand-bg-emphasis) dark:bg-blue-950/60 dark:text-blue-200">
                         {user.badge}
                       </span>
                     )}
