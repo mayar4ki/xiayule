@@ -1,16 +1,34 @@
 "use client"
 
 import { ArrowUpRightIcon, TrendingUpIcon } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
 import {
   Area,
   AreaChart,
   CartesianGrid,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts"
 import type { RevenueDataPoint } from "~/types/dashboard"
+
+function useContainerSize() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [size, setSize] = useState({ width: 0, height: 0 })
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const ro = new ResizeObserver(([entry]) => {
+      const { width, height } = entry!.contentRect
+      if (width > 0 && height > 0) setSize({ width, height })
+    })
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
+
+  return { ref, ...size }
+}
 
 interface RevenueForecastProps {
   total: string
@@ -25,6 +43,8 @@ function formatYAxis(value: number): string {
 }
 
 export function RevenueForecast({ total, trend, data }: RevenueForecastProps) {
+  const { ref: chartRef, width, height } = useContainerSize()
+
   return (
     <div className="relative rounded-[14px] border border-(--border-subtle) bg-(--bg-default) dark:border-(--border-default)">
       <div className="flex flex-col gap-1.5 px-5 pt-4">
@@ -69,9 +89,12 @@ export function RevenueForecast({ total, trend, data }: RevenueForecastProps) {
       </div>
 
 
-      <div className="h-[180px] w-full px-3 pb-4 pt-2 sm:h-[241px] sm:px-5 sm:pb-5 md:pr-5.5 md:pl-9 md:pb-6.5">
-        <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={data} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
+      <div
+        ref={chartRef}
+        className="h-[180px] w-full px-3 pb-4 pt-2 sm:h-[241px] sm:px-5 sm:pb-5 md:pr-5.5 md:pl-9 md:pb-6.5"
+      >
+        {width > 0 && height > 0 && (
+          <AreaChart width={width} height={height} data={data} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="thisYearGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor="var(--brand-bg-default)" stopOpacity={0.2} />
@@ -127,7 +150,7 @@ export function RevenueForecast({ total, trend, data }: RevenueForecastProps) {
               name="This year"
             />
           </AreaChart>
-        </ResponsiveContainer>
+        )}
       </div>
     </div>
   )

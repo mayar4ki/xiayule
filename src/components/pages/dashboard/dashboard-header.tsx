@@ -26,9 +26,9 @@ export function DashboardHeader({
             Here&apos;s your pipeline health and sales activity at a glance.
           </p>
         </div>
-        <Button onClick={() => toast.info("Feature coming soon")}>
+        <Button onClick={() => toast.info("Feature coming soon")} className=" pr-2">
           <PlusIcon className="size-4" strokeWidth={2} />
-          Create
+          Create&nbsp;
         </Button>
       </div>
       <DateFilterTabs period={period} onPeriodChange={onPeriodChange} />

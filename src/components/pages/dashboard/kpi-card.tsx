@@ -14,12 +14,12 @@ export function KPICard({ kpi }: KPICardProps) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative flex min-h-[58px] items-center justify-between rounded-[12px] bg-(--bg-default) px-4 py-2 dark:bg-(--bg-subtle)">
+    <div className="relative flex min-h-[58px] items-center justify-between rounded-xl bg-background px-4 py-2 ">
       <div className="flex flex-col gap-0">
-        <p className="text-xs font-medium leading-5 text-(--content-subtle)">
+        <p className="text-xs font-normal leading-4 text-(--content-subtle)">
           {kpi.label}
         </p>
-        <p className="text-base font-semibold leading-5 text-(--content-emphasis)">
+        <p className="text-base font-bold leading-5 text-(--content-emphasis)">
           <motion.span
             key={kpi.value}
             className="inline-block"
@@ -37,11 +37,10 @@ export function KPICard({ kpi }: KPICardProps) {
           color={isUp ? "var(--color-green-700)" : "var(--content-error)"}
         />
         <span
-          className={`inline-flex items-center gap-0.5 rounded-full px-[3px] py-0.5 text-[10px] font-semibold leading-[8px] ${
-            isUp
-              ? "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300"
-              : "bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300"
-          }`}
+          className={`inline-flex items-center gap-0.5 rounded-full px-[3px] py-0.5 text-[10px] font-semibold leading-[8px] ${isUp
+            ? "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300"
+            : "bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300"
+            }`}
         >
           {isUp ? (
             <TrendingUpIcon className="size-2.5" />
@@ -53,7 +52,7 @@ export function KPICard({ kpi }: KPICardProps) {
         </span>
       </div>
       <div
-        className="pointer-events-none absolute inset-0 rounded-xl shadow-[inset_0_0_0_1px_var(--border-muted)] dark:shadow-[inset_0_0_0_1px_var(--border-subtle)]"
+        className="pointer-events-none absolute inset-0 rounded-xl shadow-[inset_1px_0_0_0_rgba(0,0,0,0.03),inset_-1px_0_0_0_rgba(0,0,0,0.03),inset_0_-1px_0_0_rgba(0,0,0,0.07),inset_0_1px_0_0_rgba(204,204,204,0.4)] dark:shadow-[inset_1px_0_0_0_rgba(255,255,255,0.06),inset_-1px_0_0_0_rgba(255,255,255,0.06),inset_0_-1px_0_0_rgba(255,255,255,0.1),inset_0_1px_0_0_rgba(255,255,255,0.08)]"
       />
     </div>
   );

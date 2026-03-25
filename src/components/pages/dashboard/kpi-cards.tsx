@@ -9,7 +9,7 @@ interface KPICardsProps {
 
 export function KPICards({ kpis }: KPICardsProps) {
   return (
-    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 -mt-1">
+    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 -mt-0.5">
       {kpis.map((kpi) => (
         <KPICard key={kpi.label} kpi={kpi} />
       ))}

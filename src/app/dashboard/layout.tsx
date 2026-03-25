@@ -2,7 +2,6 @@
 
 import { MenuIcon } from "lucide-react";
 import { AppSidebar } from "~/components/layout/app-sidebar";
-import { Button } from "~/components/ui/button";
 import {
   SidebarInset,
   SidebarProvider,

@@ -47,7 +47,7 @@ export function DateFilterTabs({ period, onPeriodChange }: DateFilterTabsProps) 
     >
       <TabsList
         ref={listRef}
-        className="relative h-auto w-full justify-stretch gap-0 overflow-x-auto rounded-lg bg-(--bg-subtle) p-1 shadow-none"
+        className="relative h-8.5! w-full justify-stretch gap-0 overflow-x-auto rounded-lg bg-(--bg-subtle) p-1 shadow-none"
       >
         <motion.div
           className="absolute top-1 bottom-1 rounded-md bg-background shadow-sm dark:bg-(--bg-subtle)"
@@ -58,7 +58,7 @@ export function DateFilterTabs({ period, onPeriodChange }: DateFilterTabsProps) 
           <TabsTrigger
             key={tab.value}
             value={tab.value}
-            className="relative z-1 shrink-0 border-transparent! bg-transparent! py-2 font-normal shadow-none! data-active:bg-transparent! data-active:text-(--content-emphasis) data-active:shadow-none! dark:border-transparent! dark:data-active:bg-transparent! dark:data-active:border-transparent!"
+            className="relative z-1 shrink-0  py-2 font-normal shadow-none! data-active:bg-transparent! data-active:text-(--content-emphasis) "
           >
             {tab.label}
           </TabsTrigger>
