@@ -14,7 +14,7 @@ export function KPICard({ kpi }: KPICardProps) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative flex min-h-[58px] items-center justify-between rounded-xl bg-background px-4 py-2 ">
+    <div className="relative flex min-h-[58px] items-center justify-between rounded-xl bg-background px-4  ">
       <div className="flex flex-col gap-0">
         <p className="text-xs font-normal leading-4 text-(--content-subtle)">
           {kpi.label}
