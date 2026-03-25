@@ -1,12 +1,13 @@
 "use client"
 
 import { ClockIcon, AlertTriangleIcon } from "lucide-react"
+import { Badge } from "~/components/ui/badge"
 import type { Task } from "~/types/dashboard"
 
-const priorityStyles: Record<Task["priority"], { bg: string; text: string }> = {
-  low: { bg: "bg-gray-100 dark:bg-stone-700", text: "text-gray-600 dark:text-stone-300" },
-  med: { bg: "bg-orange-50 dark:bg-orange-900/30", text: "text-orange-700 dark:text-orange-300" },
-  high: { bg: "bg-red-50 dark:bg-red-900/30", text: "text-red-600 dark:text-red-300" },
+const priorityVariant: Record<Task["priority"], string> = {
+  low: "bg-gray-100 text-gray-600 dark:bg-stone-700 dark:text-stone-300",
+  med: "bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-300",
+  high: "bg-red-50 text-red-600 dark:bg-red-900/30 dark:text-red-300",
 }
 
 const typeLabels: Record<Task["type"], string> = {
@@ -22,7 +23,6 @@ interface TaskItemProps {
 }
 
 export function TaskItem({ task, onToggle }: TaskItemProps) {
-  const priority = priorityStyles[task.priority]
   const titleClass = task.completed
     ? "text-(--content-muted) line-through dark:text-stone-500"
     : task.isOverdue
@@ -71,11 +71,12 @@ export function TaskItem({ task, onToggle }: TaskItemProps) {
         </div>
       </div>
 
-      <span
-        className={`mt-0.5 inline-flex shrink-0 items-center rounded px-1.5 py-0.5 text-[11px] font-medium capitalize ${priority.bg} ${priority.text}`}
+      <Badge
+        variant="outline"
+        className={`mt-0.5 h-auto shrink-0 rounded border-0 px-1.5 py-0.5 text-[11px] font-medium capitalize ${priorityVariant[task.priority]}`}
       >
         {task.priority === "med" ? "Med" : task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}
-      </span>
+      </Badge>
     </div>
   )
 }

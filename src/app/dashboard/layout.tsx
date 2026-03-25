@@ -8,25 +8,16 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "~/components/ui/sidebar";
-import { useIsMobile } from "~/hooks/use-mobile";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const isMobile = useIsMobile();
-
   return (
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset className="bg-sidebar">
-        <header className="flex h-19 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-          <div className="flex items-center gap-2 px-4">
-            {isMobile && (
-              <Button variant="ghost" size="icon" className="ml-2 mt-2">
-                <SidebarTrigger>
-                  <MenuIcon />
-                </SidebarTrigger>
-              </Button>
-            )}
-          </div>
+        <header className="flex h-12 shrink-0 items-center gap-2 px-4 md:h-19 md:px-4 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+          <SidebarTrigger className="md:hidden">
+            <MenuIcon className="size-5" />
+          </SidebarTrigger>
         </header>
         {children}
       </SidebarInset>

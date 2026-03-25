@@ -1,6 +1,7 @@
 "use client";
 
-import { RotateCcw } from "lucide-react";
+import { Suspense } from "react";
+import { LoaderIcon, RotateCcw } from "lucide-react";
 import { toast } from "sonner";
 import {
   ActivityFeed,
@@ -24,12 +25,21 @@ const periodLabels: Record<Period, string> = {
 };
 
 export default function DashboardPage() {
+  return (
+    <Suspense fallback={<DashboardSkeleton />}>
+      <DashboardContent />
+    </Suspense>
+  );
+}
+
+function DashboardContent() {
   const {
     period,
     changePeriod,
     data,
     tasks,
     isLoading,
+    isRefreshing,
     isError,
     refetch,
     toggleTask,
@@ -70,7 +80,7 @@ export default function DashboardPage() {
     return <DashboardSkeleton />;
   }
 
-  if (isError) {
+  if (isError && !data) {
     return (
       <div className="mx-auto flex w-full max-w-[1204px] flex-1 flex-col items-center justify-center gap-4 px-[30px] py-10">
         <p className="text-sm text-gray-500">Failed to load dashboard data.</p>
@@ -96,13 +106,19 @@ export default function DashboardPage() {
   if (!data) return null;
 
   return (
-    <div className="border rounded-xl flex w-full max-w-[1204px] flex-1 flex-col gap-[26px] overflow-auto px-[30px] pb-10 pt-[25px] bg-background">
+    <div className="relative border rounded-xl flex w-full max-w-[1204px] flex-1 flex-col gap-5 overflow-auto px-4 pb-10 pt-5 bg-background sm:gap-[26px] sm:px-[30px] sm:pt-[25px]">
+      {isRefreshing && (
+        <div className="pointer-events-none absolute inset-0 z-10 flex items-start justify-center rounded-xl bg-(--bg-default)/60 pt-40 backdrop-blur-[1px] dark:bg-(--bg-default)/40">
+          <LoaderIcon className="size-5 animate-spin text-(--brand-bg-default)" />
+        </div>
+      )}
+
       <DashboardHeader period={period} onPeriodChange={handlePeriodChange} />
 
       <KPICards kpis={data.kpis} />
 
-      <div className="flex flex-col gap-[26px] lg:flex-row lg:items-start">
-        <div className="flex min-w-0 flex-1 flex-col gap-[26px] lg:max-w-[718px]">
+      <div className="flex flex-col gap-5 sm:gap-[26px] lg:flex-row lg:items-start">
+        <div className="flex min-w-0 flex-1 flex-col gap-5 sm:gap-[26px] lg:max-w-[718px]">
           <RevenueForecast
             total={data.revenue.total}
             trend={data.revenue.trend}
@@ -116,7 +132,7 @@ export default function DashboardPage() {
           />
         </div>
 
-        <div className="flex w-full flex-col gap-[26px] lg:w-[400px] lg:shrink-0">
+        <div className="flex w-full flex-col gap-5 sm:gap-[26px] md:flex-row md:gap-[26px] lg:w-[400px] lg:flex-col lg:shrink-0">
           <ActivityFeed groups={data.activities.groups} />
           {tasks && (
             <TasksPanel

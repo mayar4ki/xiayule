@@ -22,7 +22,7 @@ export function PipelineSummary({
   const maxCount = Math.max(...stages.map((s) => s.count));
 
   return (
-    <div className="rounded-[14px] border border-pipeline-border bg-(--bg-default) dark:border-stone-600 ">
+    <div className="rounded-[14px] border border-(--border-subtle) bg-(--bg-default) dark:border-(--border-default)">
       <div className="flex flex-col gap-1 px-5 pt-5 pb-6">
         <div className="flex items-center justify-between">
           <h3 className="text-compact-sm font-medium  dark:text-stone-50">
@@ -49,11 +49,11 @@ export function PipelineSummary({
           return (
             <div key={stage.stage} className="flex h-[30px] items-center gap-0">
               <div className="w-[100px] shrink-0 pr-3 text-right">
-                <span className="inline-block text-xs leading-[1.125rem] font-medium text-pipeline-stage dark:text-stone-300">
+                <span className="inline-block text-xs leading-[1.125rem] font-medium text-(--content-default) dark:text-stone-300">
                   {stage.stage}
                 </span>
               </div>
-              <div className="relative h-[30px] flex-1 overflow-hidden rounded-lg bg-pipeline-track dark:bg-stone-900">
+              <div className="relative h-[30px] flex-1 overflow-hidden rounded-lg bg-(--bg-subtle) dark:bg-stone-900">
                 <motion.div
                   initial={{ width: 0 }}
                   animate={{

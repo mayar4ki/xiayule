@@ -1,6 +1,7 @@
 "use client"
 
 import { PlusIcon } from "lucide-react"
+import { Progress } from "~/components/ui/progress"
 import type { Task } from "~/types/dashboard"
 import { TaskItem } from "./task-item"
 
@@ -31,12 +32,10 @@ export function TasksPanel({ completed, total, items, onToggleTask }: TasksPanel
             </button>
           </div>
           <div className="flex items-center gap-2">
-            <div className="relative h-1.5 flex-1 overflow-hidden rounded-full bg-(--border-muted) dark:bg-(--border-subtle)">
-              <div
-                className="absolute inset-y-0 left-0 rounded-full bg-green-700 transition-all duration-300"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
+            <Progress
+              value={progress}
+              className="h-1.5 flex-1 bg-(--border-muted) dark:bg-(--border-subtle)"
+            />
             <span className="text-[10px] font-semibold tabular-nums text-(--content-muted) dark:text-stone-500">
               {completed}/{total} done
             </span>

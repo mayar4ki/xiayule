@@ -1,5 +1,6 @@
 import { atom } from "jotai";
 import { atomWithQuery } from "jotai-tanstack-query";
+import { keepPreviousData } from "@tanstack/react-query";
 import { fetchDashboardData } from "~/lib/mock-api";
 import type { Period, Task } from "~/types/dashboard";
 
@@ -9,6 +10,7 @@ export const dashboardQueryAtom = atomWithQuery((get) => ({
   queryKey: ["dashboard", get(periodAtom)] as const,
   queryFn: ({ signal }) =>
     fetchDashboardData({ period: get(periodAtom) }, { signal }),
+  placeholderData: keepPreviousData,
 }));
 
 export const taskOverridesAtom = atom<Record<string, boolean>>({});

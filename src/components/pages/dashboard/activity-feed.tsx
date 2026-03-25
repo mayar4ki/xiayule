@@ -17,7 +17,7 @@ export function ActivityFeed({ groups }: ActivityFeedProps) {
         </h3>
       </div>
 
-      <div className="max-h-[250px] overflow-y-auto">
+      <div className="max-h-[300px] overflow-y-auto sm:max-h-[250px]">
         {groups.map((group) => (
           <div key={group.label}>
             <div className="flex h-[37px] items-center border-b border-(--border-muted) bg-(--bg-muted) px-5 dark:border-(--border-subtle) dark:bg-(--bg-muted)/40">

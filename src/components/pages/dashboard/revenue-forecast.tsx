@@ -19,8 +19,9 @@ interface RevenueForecastProps {
 }
 
 function formatYAxis(value: number): string {
-  if (value >= 1000) return `$${value / 1000}K`
-  return `$${value}`
+  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`
+  if (value >= 1_000) return `${value / 1_000}K`
+  return `${value}`
 }
 
 export function RevenueForecast({ total, trend, data }: RevenueForecastProps) {
@@ -68,7 +69,7 @@ export function RevenueForecast({ total, trend, data }: RevenueForecastProps) {
       </div>
 
 
-      <div className="h-[241px] w-full pl-5 pr-5 pb-5 pt-2  md:pr-5.5 md:pl-9 md:pb-6.5 ">
+      <div className="h-[180px] w-full px-3 pb-4 pt-2 sm:h-[241px] sm:px-5 sm:pb-5 md:pr-5.5 md:pl-9 md:pb-6.5">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 10, right: 8, left: 0, bottom: 0 }}>
             <defs>
@@ -105,7 +106,7 @@ export function RevenueForecast({ total, trend, data }: RevenueForecastProps) {
                 fontSize: 12,
                 boxShadow: "var(--shadow-md)",
               }}
-              formatter={(value) => [`$${(Number(value) / 1000).toFixed(0)}K`, ""]}
+              formatter={(value) => [`AED ${(Number(value) / 1000).toFixed(0)}K`, ""]}
             />
             <Area
               type="monotone"
