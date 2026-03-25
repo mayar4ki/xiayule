@@ -11,6 +11,7 @@ export const dashboardQueryAtom = atomWithQuery((get) => ({
   queryFn: ({ signal }) =>
     fetchDashboardData({ period: get(periodAtom) }, { signal }),
   placeholderData: keepPreviousData,
+  refetchInterval: 30_000,
 }));
 
 export const taskOverridesAtom = atom<Record<string, boolean>>({});

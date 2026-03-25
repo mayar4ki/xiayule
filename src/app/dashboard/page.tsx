@@ -1,7 +1,7 @@
 "use client";
 
-import { Suspense } from "react";
 import { LoaderIcon, RotateCcw } from "lucide-react";
+import { Suspense } from "react";
 import { toast } from "sonner";
 import {
   ActivityFeed,
@@ -114,7 +114,6 @@ function DashboardContent() {
       )}
 
       <DashboardHeader period={period} onPeriodChange={handlePeriodChange} />
-
       <KPICards kpis={data.kpis} />
 
       <div className="flex flex-col gap-5 sm:gap-[26px] lg:flex-row lg:items-start">

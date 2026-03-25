@@ -40,6 +40,7 @@ export function AppToaster() {
     <Toaster
       position="bottom-right"
       expand
+      visibleToasts={3}
       richColors={false}
       closeButton
       gap={8}

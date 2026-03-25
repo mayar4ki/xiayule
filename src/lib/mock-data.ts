@@ -146,6 +146,62 @@ const todayActivities: { label: string; entries: ActivityEntry[] }[] = [
   },
 ];
 
+const liveActivityPool: ActivityEntry[] = [
+  {
+    id: "live-1",
+    actor: "Khalid M.",
+    message: "Khalid M. moved deal to Proposal stage",
+    highlights: [{ text: "Proposal stage", type: "stage" }],
+    timestamp: "",
+    relativeTime: "Just now",
+    icon: "deal",
+  },
+  {
+    id: "live-2",
+    actor: "You",
+    message: "You received a new inquiry from Fatima Hassan",
+    highlights: [{ text: "Fatima Hassan", type: "person" }],
+    timestamp: "",
+    relativeTime: "Just now",
+    icon: "lead",
+  },
+  {
+    id: "live-3",
+    actor: "Sara T.",
+    message: "Sara T. completed a call with David Park",
+    highlights: [{ text: "David Park", type: "person" }],
+    timestamp: "",
+    relativeTime: "Just now",
+    icon: "call",
+  },
+  {
+    id: "live-4",
+    actor: "System",
+    message: "System auto-assigned lead to your pipeline",
+    highlights: [{ text: "your pipeline", type: "stage" }],
+    timestamp: "",
+    relativeTime: "Just now",
+    icon: "lead",
+  },
+  {
+    id: "live-5",
+    actor: "You",
+    message: "You sent a follow-up email to Ali Mansoor",
+    highlights: [{ text: "Ali Mansoor", type: "person", tone: "brand" }],
+    timestamp: "",
+    relativeTime: "Just now",
+    icon: "email",
+  },
+];
+
+let liveCounter = 0;
+
+function pickLiveActivity(): ActivityEntry {
+  const entry = liveActivityPool[liveCounter % liveActivityPool.length];
+  liveCounter++;
+  return { ...entry, id: `${entry.id}-${liveCounter}`, timestamp: new Date().toISOString() };
+}
+
 const todayTasks: Task[] = [
   {
     id: "t1",
@@ -194,7 +250,17 @@ const todayTasks: Task[] = [
   },
 ];
 
-function getTodayData(): DashboardData {
+function getTodayData(injectLive = false): DashboardData {
+  const activities = injectLive
+    ? {
+        groups: todayActivities.map((g) =>
+          g.label === "JUST NOW"
+            ? { ...g, entries: [pickLiveActivity(), ...g.entries] }
+            : g,
+        ),
+      }
+    : { groups: todayActivities };
+
   return {
     kpis: todayKPIs,
     revenue: {
@@ -208,10 +274,12 @@ function getTodayData(): DashboardData {
       totalValue: "AED 2.76M",
       stages: todayPipeline,
     },
-    activities: { groups: todayActivities },
+    activities,
     tasks: { completed: 0, total: 5, items: todayTasks },
   };
 }
+
+let fetchCount = 0;
 
 function variantMultiplier(period: Period): number {
   switch (period) {
@@ -275,7 +343,9 @@ function varyRevenue(
 }
 
 export function getDashboardData(period: Period): DashboardData {
-  const base = getTodayData();
+  fetchCount++;
+  const injectLive = fetchCount > 1;
+  const base = getTodayData(injectLive);
   if (period === "today") return base;
 
   const mult = variantMultiplier(period);
