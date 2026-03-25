@@ -40,7 +40,7 @@ export function KPICard({ kpi }: KPICardProps) {
           className={`inline-flex items-center gap-0.5 rounded-full px-[3px] py-0.5 text-[10px] font-semibold leading-[8px] ${
             isUp
               ? "bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-300"
-              : "bg-(--bg-error) text-(--content-error) dark:bg-red-900/30 dark:text-red-300"
+              : "bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-300"
           }`}
         >
           {isUp ? (
@@ -52,7 +52,9 @@ export function KPICard({ kpi }: KPICardProps) {
           {kpi.trend}%
         </span>
       </div>
-      <div className="pointer-events-none absolute inset-0 rounded-xl shadow-[inset_0_0_0_1px_var(--border-muted)] dark:shadow-[inset_0_0_0_1px_var(--border-subtle)]" />
+      <div
+        className="pointer-events-none absolute inset-0 rounded-xl shadow-[inset_0_0_0_1px_var(--border-muted)] dark:shadow-[inset_0_0_0_1px_var(--border-subtle)]"
+      />
     </div>
   );
 }

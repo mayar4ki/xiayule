@@ -23,6 +23,14 @@ interface TaskItemProps {
 
 export function TaskItem({ task, onToggle }: TaskItemProps) {
   const priority = priorityStyles[task.priority]
+  const titleClass = task.completed
+    ? "text-[#a0a9bd] line-through dark:text-stone-500"
+    : task.isOverdue
+      ? "text-red-600 dark:text-red-400"
+      : "text-[#091026] dark:text-stone-100"
+  const dueClass = task.isOverdue
+    ? "text-red-500 dark:text-red-400"
+    : "text-[#a0a9bd] dark:text-stone-400"
 
   return (
     <div className="flex items-start gap-3 border-b border-[#f1f3f7] px-5 py-3 dark:border-stone-700 last:border-b-0">
@@ -30,9 +38,9 @@ export function TaskItem({ task, onToggle }: TaskItemProps) {
         type="button"
         onClick={() => onToggle(task.id)}
         className={`mt-0.5 flex size-[18px] shrink-0 items-center justify-center rounded-full border-2 transition-colors ${
-          task.completed
-            ? "border-brand-500 bg-brand-500"
-            : "border-gray-300 bg-transparent hover:border-brand-400 dark:border-stone-500"
+            task.completed
+              ? "border-brand-500 bg-brand-500"
+              : "border-gray-300 bg-transparent hover:border-brand-400 dark:border-stone-500"
         }`}
         aria-label={task.completed ? "Mark incomplete" : "Mark complete"}
       >
@@ -44,15 +52,7 @@ export function TaskItem({ task, onToggle }: TaskItemProps) {
       </button>
 
       <div className="flex min-w-0 flex-1 flex-col gap-1">
-        <p
-          className={`text-[13px] font-medium leading-[18px] ${
-            task.completed
-              ? "text-[#a0a9bd] line-through dark:text-stone-500"
-              : task.isOverdue
-                ? "text-red-600 dark:text-red-400"
-                : "text-[#091026] dark:text-stone-100"
-          }`}
-        >
+        <p className={`text-[13px] font-medium leading-[18px] ${titleClass}`}>
           {task.title}
         </p>
         <div className="flex items-center gap-1">
@@ -61,13 +61,7 @@ export function TaskItem({ task, onToggle }: TaskItemProps) {
           ) : (
             <ClockIcon className="size-3 text-[#a0a9bd] dark:text-stone-500" />
           )}
-          <span
-            className={`text-[11px] ${
-              task.isOverdue
-                ? "text-red-500 dark:text-red-400"
-                : "text-[#a0a9bd] dark:text-stone-400"
-            }`}
-          >
+          <span className={`text-[11px] ${dueClass}`}>
             {task.dueLabel}
           </span>
           <span className="text-[11px] text-[#a0a9bd] dark:text-stone-500">&middot;</span>

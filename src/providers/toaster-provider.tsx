@@ -12,17 +12,18 @@ const toastChrome =
 
 const toastDefault =
   `${toastChrome} bg-[var(--bg-inverted)] text-[var(--color-gray-50)] ` +
-  "[&_[data-title]]:font-semibold [&_[data-title]]:leading-4 [&_[data-title]]:text-[var(--color-gray-50)] " +
-  "[&_[data-description]]:text-[var(--color-gray-50)]/90 [&_[data-icon]]:text-[var(--color-gray-50)] " +
-  "[&_[data-close-button]]:text-[var(--color-gray-50)] [&_[data-action]]:font-medium [&_[data-action]]:text-[var(--color-gray-50)] " +
-  "[&_[data-cancel]]:font-medium [&_[data-cancel]]:text-[var(--color-gray-50)]";
+  "dark:text-[var(--color-gray-900)] " +
+  "[&_[data-title]]:font-semibold [&_[data-title]]:leading-4 [&_[data-title]]:text-[var(--color-gray-50)] dark:[&_[data-title]]:text-[var(--color-gray-900)] " +
+  "[&_[data-description]]:text-[var(--color-gray-50)]/90 dark:[&_[data-description]]:text-[var(--color-gray-900)]/90 [&_[data-icon]]:text-[var(--color-gray-50)] dark:[&_[data-icon]]:text-[var(--color-gray-900)] " +
+  "[&_[data-close-button]]:text-[var(--color-gray-50)] dark:[&_[data-close-button]]:text-[var(--color-gray-900)] [&_[data-action]]:font-medium [&_[data-action]]:text-[var(--color-gray-50)] dark:[&_[data-action]]:text-[var(--color-gray-900)] " +
+  "[&_[data-cancel]]:font-medium [&_[data-cancel]]:text-[var(--color-gray-50)] dark:[&_[data-cancel]]:text-[var(--color-gray-900)]";
 
 const toastError =
-  `${toastChrome} bg-[#f9e3e2] text-[#752522] ` +
-  "[&_[data-title]]:font-semibold [&_[data-title]]:leading-4 [&_[data-title]]:text-[#752522] " +
-  "[&_[data-description]]:text-[#752522]/90 [&_[data-icon]]:text-[#752522] " +
-  "[&_[data-close-button]]:text-[#752522] [&_[data-action]]:font-medium [&_[data-action]]:text-[#752522] " +
-  "[&_[data-cancel]]:font-medium [&_[data-cancel]]:text-[#752522]";
+  `${toastChrome} bg-red-50 text-red-900 dark:bg-red-950/60 dark:text-red-200 ` +
+  "[&_[data-title]]:font-semibold [&_[data-title]]:leading-4 [&_[data-title]]:text-red-900 dark:[&_[data-title]]:text-red-200 " +
+  "[&_[data-description]]:text-red-900/90 dark:[&_[data-description]]:text-red-200/90 [&_[data-icon]]:text-red-900 dark:[&_[data-icon]]:text-red-200 " +
+  "[&_[data-close-button]]:text-red-900 dark:[&_[data-close-button]]:text-red-200 [&_[data-action]]:font-medium [&_[data-action]]:text-red-900 dark:[&_[data-action]]:text-red-200 " +
+  "[&_[data-cancel]]:font-medium [&_[data-cancel]]:text-red-900 dark:[&_[data-cancel]]:text-red-200";
 
 const iconLg = "size-4 shrink-0 [&_svg]:size-4";
 

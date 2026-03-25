@@ -25,7 +25,7 @@ function formatYAxis(value: number): string {
 
 export function RevenueForecast({ total, trend, data }: RevenueForecastProps) {
   return (
-    <div className="relative rounded-[14px] border border-(--border-subtle) bg-(--bg-default) dark:border-(--border-default) ">
+    <div className="relative rounded-[14px] border border-(--border-subtle) bg-(--bg-default) dark:border-(--border-default)">
       <div className="flex flex-col gap-1.5 px-5 pt-4">
         <div className="flex items-center justify-between">
           <p className="text-sm font-normal leading-5 text-(--content-subtle)">
@@ -48,7 +48,7 @@ export function RevenueForecast({ total, trend, data }: RevenueForecastProps) {
               <TrendingUpIcon className="size-2.5" strokeWidth={2.5} />
               +{trend}%
             </span>
-            <span className="text-xs leading-[18px] text-(--content-muted) dark:text-stone-500">vs last year</span>
+            <span className="text-xs leading-[18px] text-(--content-muted)">vs last year</span>
           </div>
         </div>
         <div className="flex items-center gap-5 pt-2">

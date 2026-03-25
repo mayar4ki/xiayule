@@ -132,6 +132,7 @@
   --brand-bg-emphasis: var(--color-brand-900);
   --brand-bg-default: var(--color-brand-500);
   --brand-bg-subtle: var(--color-brand-100);
+
 }
 
 .dark {
@@ -169,6 +170,7 @@
   --brand-bg-emphasis: var(--color-brand-100);
   --brand-bg-default: var(--color-brand-500);
   --brand-bg-subtle: var(--color-brand-900);
+
 }
 
 /* -----------------------------------------------------------------------------

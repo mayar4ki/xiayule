@@ -15,7 +15,7 @@ export function TasksPanel({ completed, total, items, onToggleTask }: TasksPanel
   const progress = total > 0 ? (completed / total) * 100 : 0
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-[14px] border border-(--border-subtle) bg-(--bg-default) dark:border-(--border-default) ">
+    <div className="flex flex-col overflow-hidden rounded-[14px] border border-(--border-subtle) bg-(--bg-default) dark:border-(--border-default)">
       <div className="border-b border-(--border-muted) px-5 pt-5.5 pb-3 dark:border-(--border-subtle)">
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between gap-2">
