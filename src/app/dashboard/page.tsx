@@ -1,6 +1,7 @@
 "use client";
 
 import { LoaderIcon, RotateCcw } from "lucide-react";
+import { Button } from "~/components/ui/button";
 import { Suspense } from "react";
 import { toast } from "sonner";
 import {
@@ -84,8 +85,7 @@ function DashboardContent() {
     return (
       <div className="mx-auto flex w-full max-w-[1204px] flex-1 flex-col items-center justify-center gap-4 px-[30px] py-10">
         <p className="text-sm text-gray-500">Failed to load dashboard data.</p>
-        <button
-          type="button"
+        <Button
           onClick={() => {
             toast.error("Failed to load data", {
               action: {
@@ -95,10 +95,9 @@ function DashboardContent() {
             });
             refetch();
           }}
-          className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700"
         >
           Retry
-        </button>
+        </Button>
       </div>
     );
   }

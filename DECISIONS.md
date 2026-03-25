@@ -45,6 +45,13 @@ The build still matches the intended stack:
 
 ---
 
+## Pipeline chart
+
+The Pipeline Summary uses styled `motion.div` bars instead of a Recharts `BarChart`.  
+Recharts' horizontal bar chart doesn't natively support the in-bar value/count labels, stage-name left-axis layout, or the two-tone gradient fill the Figma spec requires. A custom implementation matches the design 1:1 while keeping framer-motion entrance animations consistent with the rest of the dashboard.
+
+---
+
 ## Theme
 
 Light and dark mode are toggled from **Settings** (`/dashboard/settings`).

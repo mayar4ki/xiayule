@@ -26,7 +26,7 @@ function isValidPeriod(value: string | null): value is Period {
 
 export function useDashboard() {
   const [period, setPeriod] = useAtom(periodAtom);
-  const { data, isLoading, isFetching, isPlaceholderData, isError, refetch } =
+  const { data, isLoading, isFetching, isError, refetch } =
     useAtomValue(dashboardQueryAtom);
   const tasks = useAtomValue(tasksAtom);
   const setTaskOverrides = useSetAtom(taskOverridesAtom);
